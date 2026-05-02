@@ -44,12 +44,19 @@ export function InstructorWeekCalendar({ slots, weekLabel }: Props) {
                     >
                       <p className="instructor-week-cal__course">{s.courseName}</p>
                       <p className="instructor-week-cal__code">{s.courseCode}</p>
-                      <p className="instructor-week-cal__time">
-                        {s.startTime} – {s.endTime}
-                      </p>
-                      {s.room ? (
-                        <p className="instructor-week-cal__room">{s.room}</p>
-                      ) : null}
+                      <div className="instructor-week-cal__slot-meta">
+                        <p className="instructor-week-cal__time">
+                          <span
+                            className="instructor-week-cal__time-range"
+                            dir="ltr"
+                          >
+                            {s.startTime} – {s.endTime}
+                          </span>
+                        </p>
+                        {s.room ? (
+                          <p className="instructor-week-cal__room">{s.room}</p>
+                        ) : null}
+                      </div>
                     </article>
                   ))
                 )}

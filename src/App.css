@@ -448,34 +448,35 @@ body {
 .welcome-banner-instructor {
   border-radius: var(--radius);
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    #fff4e8 0%,
-    #ffe8d4 45%,
-    #fff8f0 100%
-  );
-  border: 1px solid rgba(232, 160, 58, 0.22);
+  background: var(--surface);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow);
   min-height: 0;
 }
 
-/* جدول الأسبوع يميناً (بداية RTL) + تقويم شهري يساراً */
+/* جدول الأسبوع يميناً (بداية RTL) + تقويم شهري يساراً — عمود التقويم أوسع */
 .welcome-banner-instructor--split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 248px);
+  grid-template-columns: minmax(0, 1fr) clamp(288px, 36vw, 440px);
   gap: 0;
   align-items: stretch;
 }
 
+@media (min-width: 1200px) {
+  .welcome-banner-instructor--split {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+  }
+}
+
 .welcome-banner-instructor__schedule {
-  padding: 1rem 1.25rem 1.1rem;
+  padding: 1.2rem 1.25rem 1.25rem;
   min-width: 0;
 }
 
 .welcome-banner-instructor__month {
-  padding: 0.85rem 0.95rem 1rem;
-  background: rgba(255, 255, 255, 0.45);
-  border-inline-start: 1px solid rgba(232, 160, 58, 0.25);
+  padding: 1.15rem 1.2rem 1.25rem;
+  background: var(--surface-2);
+  border-inline-start: 1px solid var(--border);
   min-width: 0;
 }
 
@@ -487,7 +488,7 @@ body {
   .welcome-banner-instructor__month {
     order: -1;
     border-inline-start: none;
-    border-bottom: 1px solid rgba(232, 160, 58, 0.25);
+    border-bottom: 1px solid var(--border);
   }
 }
 
@@ -504,71 +505,76 @@ body {
 }
 
 .instructor-week-cal__head {
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
   text-align: start;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .instructor-week-cal__title {
   margin: 0 0 0.2rem;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--text);
+  letter-spacing: -0.02em;
 }
 
 .instructor-week-cal__subtitle {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: 0.76rem;
   color: var(--muted);
-  line-height: 1.4;
+  line-height: 1.5;
+  max-width: 42rem;
 }
 
 .instructor-week-cal__scroll {
   overflow-x: auto;
-  padding-bottom: 0.2rem;
-  margin-inline: -0.15rem;
+  padding-bottom: 0.35rem;
+  margin-inline: -0.2rem;
+  scrollbar-color: rgba(69, 137, 168, 0.35) transparent;
 }
 
 .instructor-week-cal__grid {
   display: grid;
-  grid-template-columns: repeat(7, minmax(100px, 1fr));
-  gap: 0.4rem;
-  min-width: min(100%, 760px);
+  grid-template-columns: repeat(7, minmax(104px, 1fr));
+  gap: 0.5rem;
+  min-width: min(100%, 780px);
 }
 
 @media (max-width: 820px) {
   .instructor-week-cal__grid {
-    grid-template-columns: repeat(7, minmax(92px, 1fr));
-    min-width: 640px;
+    grid-template-columns: repeat(7, minmax(96px, 1fr));
+    min-width: 656px;
   }
 }
 
 .instructor-week-cal__col {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.45rem;
   min-width: 0;
 }
 
 .instructor-week-cal__dayhead {
   text-align: center;
-  padding: 0.25rem 0.15rem;
-  background: rgba(255, 255, 255, 0.55);
-  border-radius: 8px;
-  border: 1px solid rgba(232, 160, 58, 0.2);
+  padding: 0.38rem 0.25rem;
+  background: var(--grey-50);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
 
 .instructor-week-cal__dayname {
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 800;
-  color: var(--brand-dark);
+  color: var(--text);
 }
 
 .instructor-week-cal__slots {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
   flex: 1;
-  min-height: 2.5rem;
+  min-height: 3rem;
 }
 
 .instructor-week-cal__empty {
@@ -582,38 +588,65 @@ body {
 
 .instructor-week-cal__slot {
   margin: 0;
-  padding: 0.4rem 0.45rem;
-  background: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem 0.5rem 0.5rem 0.45rem;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(30, 42, 54, 0.05);
+  border-radius: var(--radius-sm);
+  border-inline-start: 2px solid var(--brand);
+  box-shadow: 0 1px 3px rgba(30, 42, 54, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.instructor-week-cal__slot:hover {
+  border-color: var(--grey-300);
+  box-shadow: 0 2px 10px rgba(30, 42, 54, 0.06);
 }
 
 .instructor-week-cal__course {
-  margin: 0 0 0.1rem;
-  font-size: 0.68rem;
+  margin: 0;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .instructor-week-cal__code {
-  margin: 0 0 0.15rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  color: var(--brand-dark);
+  margin: 0;
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: var(--brand);
+  letter-spacing: 0.02em;
+}
+
+.instructor-week-cal__slot-meta {
+  margin-top: 0.12rem;
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--grey-200);
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
 }
 
 .instructor-week-cal__time {
-  margin: 0 0 0.1rem;
-  font-size: 0.62rem;
-  color: var(--muted);
+  margin: 0;
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.instructor-week-cal__time-range {
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
 }
 
 .instructor-week-cal__room {
   margin: 0;
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   color: var(--muted);
+  line-height: 1.35;
 }
 
 /* تقويم شهري (يسار البانر في RTL) */
@@ -625,70 +658,92 @@ body {
 
 .instructor-month-cal__head {
   text-align: center;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .instructor-month-cal__title {
-  margin: 0 0 0.15rem;
-  font-size: 0.82rem;
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
   font-weight: 800;
   color: var(--text);
+  letter-spacing: -0.02em;
 }
 
 .instructor-month-cal__month {
   margin: 0;
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: var(--brand-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand);
 }
 
 .instructor-month-cal__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.2rem;
+  gap: 0.38rem;
   direction: rtl;
 }
 
 .instructor-month-cal__dow {
   text-align: center;
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: var(--muted);
-  padding: 0.15rem 0;
+  padding: 0.3rem 0.12rem;
+  text-transform: none;
 }
 
 .instructor-month-cal__cell {
-  min-height: 1.85rem;
+  min-height: 2.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.66rem;
+  font-size: 0.78rem;
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.65);
-  border-radius: 6px;
-  border: 1px solid transparent;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
 }
 
 .instructor-month-cal__cell--muted {
   color: var(--muted);
   opacity: 0.55;
-  background: rgba(255, 255, 255, 0.25);
+  background: transparent;
+  border-color: transparent;
 }
 
 .instructor-month-cal__cell--event {
-  background: var(--brand-soft);
-  border-color: rgba(69, 137, 168, 0.45);
-  color: var(--brand-dark);
+  background: transparent;
+  border-color: transparent;
   font-weight: 800;
 }
 
+.instructor-month-cal__cell--event > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.15rem;
+  height: 2.15rem;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  border: 1px solid rgba(69, 137, 168, 0.35);
+  color: var(--brand-dark);
+  font-size: 0.8rem;
+}
+
 .instructor-month-cal__legend {
-  margin: 0.5rem 0 0;
-  font-size: 0.58rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.62rem;
   color: var(--muted);
-  line-height: 1.35;
+  line-height: 1.45;
   text-align: center;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
 .kpi-grid {
