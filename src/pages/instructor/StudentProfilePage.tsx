@@ -143,15 +143,6 @@ export function StudentProfilePage() {
           </li>
         </ul>
       </section>
-
-      <section className="panel panel--rec">
-        <h2 className="panel__title">توصيات ذكية</h2>
-        <ul className="rec-list">
-          {student.recommendations.map((t, i) => (
-            <li key={i}>{t}</li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }

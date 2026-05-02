@@ -253,10 +253,10 @@ export const mockStudents: Student[] = [
   {
     id: "443007303",
     name: "نورة سليمان الهذيلان",
-    engagementScore: 58,
+    engagementScore: 76,
     criteria: { visual: 52, attendance: 65, grades: 56 },
     level: "متوسط",
-    atRisk: true,
+    atRisk: false,
     course: "تعلم عميق",
     lastSessionDate: "2026-04-25",
     liveEngagement: 44,

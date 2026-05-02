@@ -22,7 +22,10 @@ export function InstructorHomePage() {
 
   return (
     <div className="page-stack">
-      <section className="instructor-dash-hero" aria-label="الترحيب وبيانات المعلّم">
+      <h1 className="visually-hidden">
+        لوحة المحاضر — {instructorProfile.displayName}
+      </h1>
+      <section className="instructor-dash-hero" aria-label="الملف والجدولة">
         <aside className="instructor-profile-panel">
           <h2 className="instructor-profile-panel__title">الملف التعريفي</h2>
           <p className="instructor-profile-panel__progress-label">

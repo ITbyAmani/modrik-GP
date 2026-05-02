@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { mockStudents } from "../data/seasMock";
 
-/** 80–100 أخضر، 70–79 أصفر، أقل من 70 أحمر */
+/** ≥70 أخضر، 60–69 أصفر، أقل من 60 أحمر */
 function focusScoreTier(score: number): "green" | "yellow" | "red" {
-  if (score >= 80) return "green";
-  if (score >= 70) return "yellow";
+  const n = Number(score);
+  if (!Number.isFinite(n)) return "red";
+  if (n >= 70) return "green";
+  if (n >= 60) return "yellow";
   return "red";
 }
 
@@ -68,25 +70,22 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
         </p>
       </header>
 
-      <section className="students-filters" aria-label="تصفية وبحث الطلاب">
-        <header className="students-filters__head">
-          <h2 className="students-filters__head-title">تصفية القائمة</h2>
-          <p className="students-filters__head-desc">
-            المقرر أولاً، ثم البحث بالاسم أو الرقم الجامعي.
-          </p>
-        </header>
-        <div className="students-filters__stack">
-          <div className="students-filters__field">
-            <label
-              className="students-filters__label"
-              htmlFor="students-course-filter"
-            >
+      <section className="student-filter" aria-label="تصفية وبحث الطلاب">
+        <p className="student-filter__hint">
+          اختر مقرراً أو ابحث بالاسم / الرقم الجامعي / المقرر
+        </p>
+        <div className="student-filter__bar">
+          <div className="student-filter__segment student-filter__segment--course">
+            <label className="student-filter__label" htmlFor="students-course-filter">
               المقرر
             </label>
-            <div className="students-filters__control students-filters__control--select">
+            <div className="student-filter__shell">
+              <span className="student-filter__glyph" aria-hidden>
+                ◫
+              </span>
               <select
                 id="students-course-filter"
-                className="students-filters__select"
+                className="student-filter__select"
                 value={courseFilter}
                 onChange={(e) => setCourseFilter(e.target.value)}
               >
@@ -99,19 +98,20 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
               </select>
             </div>
           </div>
-          <div className="students-filters__field">
-            <label className="students-filters__label" htmlFor="students-search">
-              بحث في القائمة
+          <div className="student-filter__rule" aria-hidden />
+          <div className="student-filter__segment student-filter__segment--search">
+            <label className="student-filter__label" htmlFor="students-search">
+              بحث
             </label>
-            <div className="students-filters__control students-filters__control--search">
-              <span className="students-filters__search-icon" aria-hidden>
+            <div className="student-filter__shell student-filter__shell--search">
+              <span className="student-filter__glyph student-filter__glyph--search" aria-hidden>
                 ⌕
               </span>
               <input
                 id="students-search"
                 type="search"
-                className="students-filters__input"
-                placeholder="اكتب جزءاً من الاسم أو الرقم أو المقرر…"
+                className="student-filter__input"
+                placeholder="ابحث في الطلاب المعروضين…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 autoComplete="off"
