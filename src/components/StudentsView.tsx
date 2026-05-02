@@ -1,24 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { mockStudents } from "../data/seasMock";
-
-/** ≥70 أخضر، 60–69 أصفر، أقل من 60 أحمر */
-function focusScoreTier(score: number): "green" | "yellow" | "red" {
-  const n = Number(score);
-  if (!Number.isFinite(n)) return "red";
-  if (n >= 70) return "green";
-  if (n >= 60) return "yellow";
-  return "red";
-}
+import { focusScoreBand } from "../lib/focusScoreBands";
 
 function focusScoreRowClass(score: number): string {
-  const tier = focusScoreTier(score);
+  const tier = focusScoreBand(score);
   return `row-focus row-focus--${tier}`;
 }
 
 function focusScorePillClass(score: number): string {
   const base = "score-pill";
-  const tier = focusScoreTier(score);
+  const tier = focusScoreBand(score);
   return `${base} score-pill--focus-${tier}`;
 }
 

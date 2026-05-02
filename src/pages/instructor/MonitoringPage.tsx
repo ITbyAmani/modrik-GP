@@ -5,6 +5,7 @@ import {
   engagementTrendSessionMinutes,
   mockStudents,
 } from "../../data/seasMock";
+import { focusScoreBand } from "../../lib/focusScoreBands";
 
 function initials(name: string) {
   const p = name.trim().split(/\s+/).filter(Boolean);
@@ -12,9 +13,11 @@ function initials(name: string) {
   return name.slice(0, 2);
 }
 
+/** نفس عتبات جدول الطلاب: ٧٠+ أخضر، ٦٠–٦٩ أصفر، أقل من ٦٠ أحمر */
 function liveTone(v: number): "high" | "mid" | "low" {
-  if (v >= 70) return "high";
-  if (v >= 45) return "mid";
+  const b = focusScoreBand(v);
+  if (b === "green") return "high";
+  if (b === "yellow") return "mid";
   return "low";
 }
 
@@ -34,15 +37,15 @@ export function MonitoringPage() {
         <ul className="monitor-legend__list">
           <li>
             <span className="monitor-legend__dot monitor-legend__dot--high" />
-            أخضر — تفاعل عالي (≥ ٧٠٪)
+            أخضر — تفاعل عالي (٧٠٪ فما فوق)
           </li>
           <li>
             <span className="monitor-legend__dot monitor-legend__dot--mid" />
-            أصفر — متوسط (٤٥–٦٩٪)
+            أصفر — متوسط (٦٠–٦٩٪)
           </li>
           <li>
             <span className="monitor-legend__dot monitor-legend__dot--low" />
-            أحمر — منخفض (أقل من ٤٥٪)
+            أحمر — منخفض (أقل من ٦٠٪)
           </li>
         </ul>
       </div>

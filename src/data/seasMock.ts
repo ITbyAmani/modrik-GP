@@ -84,7 +84,7 @@ export const instructorProfile = {
   profileCompletionPct: 75,
 };
 
-/** فترة في جدول أسبوعي — weekday: 0 = الأحد … 6 = السبت */
+/** فترة في جدول أسبوعي — weekday: 0 = الأحد … 4 = الخميس (5–6 غير معروضة في واجهة تقويم المواد) */
 export type InstructorScheduleSlot = {
   weekday: number;
   startTime: string;
@@ -237,7 +237,7 @@ export const mockStudents: Student[] = [
     atRisk: false,
     course: "رؤية حاسوبية",
     lastSessionDate: "2026-04-28",
-    liveEngagement: 68,
+    liveEngagement: 78,
     multimodal: { visual: 38, audio: 22, digital: 40 },
     attendanceRate: 82,
     absenceRate: 18,
@@ -259,7 +259,7 @@ export const mockStudents: Student[] = [
     atRisk: false,
     course: "تعلم عميق",
     lastSessionDate: "2026-04-25",
-    liveEngagement: 44,
+    liveEngagement: 76,
     multimodal: { visual: 32, audio: 18, digital: 50 },
     attendanceRate: 68,
     absenceRate: 32,

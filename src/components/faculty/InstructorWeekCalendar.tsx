@@ -1,14 +1,13 @@
 import type { InstructorScheduleSlot } from "../../data/seasMock";
 
-const WEEKDAY_LABELS = [
+/** أيام الدوام الأكاديمي (بدون الجمعة والسبت) — weekday كما في seasMock: 0 = الأحد … 4 = الخميس */
+const SCHEDULE_WEEKDAY_LABELS = [
   "الأحد",
   "الإثنين",
   "الثلاثاء",
   "الأربعاء",
   "الخميس",
-  "الجمعة",
-  "السبت",
-];
+] as const;
 
 type Props = {
   slots: InstructorScheduleSlot[];
@@ -16,7 +15,7 @@ type Props = {
 };
 
 export function InstructorWeekCalendar({ slots, weekLabel }: Props) {
-  const byDay = WEEKDAY_LABELS.map((_, day) =>
+  const byDay = SCHEDULE_WEEKDAY_LABELS.map((_, day) =>
     slots.filter((s) => s.weekday === day)
   );
 
@@ -28,7 +27,7 @@ export function InstructorWeekCalendar({ slots, weekLabel }: Props) {
       </div>
       <div className="instructor-week-cal__scroll" role="region">
         <div className="instructor-week-cal__grid">
-          {WEEKDAY_LABELS.map((dayName, day) => (
+          {SCHEDULE_WEEKDAY_LABELS.map((dayName, day) => (
             <div key={dayName} className="instructor-week-cal__col">
               <div className="instructor-week-cal__dayhead">
                 <span className="instructor-week-cal__dayname">{dayName}</span>
