@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 import { InstructorDashboardStats } from "../../components/faculty/InstructorDashboardStats";
+import { InstructorMonthCalendar } from "../../components/faculty/InstructorMonthCalendar";
+import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekCalendar";
 import instructorAvatar from "../../assets/instructor-avatar.svg";
 import {
   currentLecture,
   dashboardSummary,
   engagementTrendSessionMinutes,
   engagementTrendWeeks,
+  getInstructorCalendarHighlightIso,
+  instructorCalendarMonth,
   instructorProfile,
+  instructorScheduleWeekLabel,
+  instructorWeeklySchedule,
   mockAlerts,
   mockStudents,
 } from "../../data/seasMock";
@@ -60,21 +66,23 @@ export function InstructorHomePage() {
           </p>
         </aside>
 
-        <div className="welcome-banner-instructor">
-          <div className="welcome-banner-instructor__content">
-            <h1 className="welcome-banner-instructor__greet">
-              مرحباً، {instructorProfile.displayName}
-            </h1>
-            <p className="welcome-banner-instructor__lead">
-              هذه نظرة على مقررك <strong>{instructorProfile.courseName}</strong>{" "}
-              والجلسة: {currentLecture.title}. تابع التفاعل والتنبيهات أدناه.
-            </p>
-            <p className="welcome-banner-instructor__hint">
-              نظرة شاملة وسريعة على درجة التفاعل، الحضور، الطلاب المعرضون
-              للخطر، والرسوم الزمنية.
-            </p>
+        <div className="welcome-banner-instructor welcome-banner-instructor--split">
+          <div className="welcome-banner-instructor__schedule">
+            <InstructorWeekCalendar
+              slots={instructorWeeklySchedule}
+              weekLabel={instructorScheduleWeekLabel}
+            />
           </div>
-          <div className="welcome-banner-instructor__deco" aria-hidden />
+          <aside
+            className="welcome-banner-instructor__month"
+            aria-label="تقويم شهري"
+          >
+            <InstructorMonthCalendar
+              year={instructorCalendarMonth.year}
+              monthIndex={instructorCalendarMonth.monthIndex}
+              highlightedDates={getInstructorCalendarHighlightIso()}
+            />
+          </aside>
         </div>
       </section>
 

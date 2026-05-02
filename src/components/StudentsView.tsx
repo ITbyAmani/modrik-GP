@@ -69,13 +69,13 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
       </header>
 
       <section className="students-filters" aria-label="تصفية وبحث الطلاب">
-        <div className="students-filters__head">
-          <span className="students-filters__head-title">تصفية القائمة</span>
-          <span className="students-filters__head-desc">
-            اختر مقرراً أو ابحث بالاسم أو الرقم الجامعي
-          </span>
-        </div>
-        <div className="students-filters__grid">
+        <header className="students-filters__head">
+          <h2 className="students-filters__head-title">تصفية القائمة</h2>
+          <p className="students-filters__head-desc">
+            المقرر أولاً، ثم البحث بالاسم أو الرقم الجامعي.
+          </p>
+        </header>
+        <div className="students-filters__stack">
           <div className="students-filters__field">
             <label
               className="students-filters__label"
@@ -101,7 +101,7 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
           </div>
           <div className="students-filters__field">
             <label className="students-filters__label" htmlFor="students-search">
-              بحث
+              بحث في القائمة
             </label>
             <div className="students-filters__control students-filters__control--search">
               <span className="students-filters__search-icon" aria-hidden>
@@ -111,7 +111,7 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
                 id="students-search"
                 type="search"
                 className="students-filters__input"
-                placeholder="الاسم، الرقم الجامعي، أو المقرر…"
+                placeholder="اكتب جزءاً من الاسم أو الرقم أو المقرر…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 autoComplete="off"

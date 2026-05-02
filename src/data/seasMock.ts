@@ -84,6 +84,90 @@ export const instructorProfile = {
   profileCompletionPct: 75,
 };
 
+/** فترة في جدول أسبوعي — weekday: 0 = الأحد … 6 = السبت */
+export type InstructorScheduleSlot = {
+  weekday: number;
+  startTime: string;
+  endTime: string;
+  courseName: string;
+  courseCode: string;
+  room?: string;
+};
+
+/** جدول تجريبي: المواد التي يدرّسها عضو هيئة التدريس هذا الأسبوع */
+export const instructorWeeklySchedule: InstructorScheduleSlot[] = [
+  {
+    weekday: 0,
+    startTime: "10:00",
+    endTime: "11:50",
+    courseName: "رؤية حاسوبية",
+    courseCode: "CS 331",
+    room: "قاعة 201",
+  },
+  {
+    weekday: 0,
+    startTime: "13:00",
+    endTime: "14:50",
+    courseName: "تعلم عميق",
+    courseCode: "CS 415",
+    room: "قاعة 105",
+  },
+  {
+    weekday: 1,
+    startTime: "08:00",
+    endTime: "09:50",
+    courseName: "رؤية حاسوبية",
+    courseCode: "CS 331",
+    room: "معمل صور",
+  },
+  {
+    weekday: 2,
+    startTime: "10:00",
+    endTime: "11:50",
+    courseName: "أنظمة ذكية",
+    courseCode: "CS 442",
+    room: "قاعة 310",
+  },
+  {
+    weekday: 3,
+    startTime: "11:00",
+    endTime: "12:50",
+    courseName: "تعلم عميق",
+    courseCode: "CS 415",
+    room: "قاعة 105",
+  },
+  {
+    weekday: 4,
+    startTime: "09:00",
+    endTime: "10:50",
+    courseName: "رؤية حاسوبية",
+    courseCode: "CS 331",
+    room: "قاعة 201",
+  },
+];
+
+/** تسمية أسبوع العرض (يمكن ربطها لاحقاً بالتاريخ الفعلي) */
+export const instructorScheduleWeekLabel =
+  "أسبوع المحاضرات (بيانات تجريبية — 26 أبريل – 2 مايو 2026)";
+
+/** التقويم الشهري المعروض بجانب جدول الأسبوع */
+export const instructorCalendarMonth = { year: 2026, monthIndex: 4 };
+
+/** تمييز أيام أسبوع العرض (محلياً yyyy-mm-dd) */
+export function getInstructorCalendarHighlightIso(): string[] {
+  const out: string[] = [];
+  const start = new Date(2026, 3, 26);
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    out.push(`${y}-${m}-${day}`);
+  }
+  return out;
+}
+
 /** اتجاه متوسط التفاعل أسبوعياً */
 export const engagementTrendWeeks = [
   { label: "أسبوع 1", value: 62 },
