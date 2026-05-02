@@ -13,7 +13,7 @@ function initials(name: string) {
   return name.slice(0, 2);
 }
 
-/** نفس عتبات جدول الطلاب: ٧٠+ أخضر، ٦٠–٦٩ أصفر، أقل من ٦٠ أحمر */
+/** نفس عتبات جدول الطلاب: ٨٠+ أخضر، ٧٠–٧٩ أصفر، أقل من ٧٠ أحمر */
 function liveTone(v: number): "high" | "mid" | "low" {
   const b = focusScoreBand(v);
   if (b === "green") return "high";
@@ -37,15 +37,15 @@ export function MonitoringPage() {
         <ul className="monitor-legend__list">
           <li>
             <span className="monitor-legend__dot monitor-legend__dot--high" />
-            أخضر — تفاعل عالي (٧٠٪ فما فوق)
+            أخضر — تفاعل عالي (٨٠–١٠٠٪)
           </li>
           <li>
             <span className="monitor-legend__dot monitor-legend__dot--mid" />
-            أصفر — متوسط (٦٠–٦٩٪)
+            أصفر — متوسط (٧٠–٧٩٪)
           </li>
           <li>
             <span className="monitor-legend__dot monitor-legend__dot--low" />
-            أحمر — منخفض (أقل من ٦٠٪)
+            أحمر — منخفض (٦٩٪ وأقل)
           </li>
         </ul>
       </div>

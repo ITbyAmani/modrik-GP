@@ -80,8 +80,6 @@ export const instructorProfile = {
   /** المقرر الذي تدرّسه حالياً */
   courseName: "رؤية حاسوبية",
   courseCode: "CS 331",
-  /** شريط اكتمال الملف (واجهة فقط) */
-  profileCompletionPct: 75,
 };
 
 /** فترة في جدول أسبوعي — weekday: 0 = الأحد … 4 = الخميس (5–6 غير معروضة في واجهة تقويم المواد) */
@@ -209,13 +207,13 @@ export const mockStudents: Student[] = [
   {
     id: "444008593",
     name: "أماني علي الدوسري",
-    engagementScore: 84,
+    engagementScore: 94,
     criteria: { visual: 88, attendance: 92, grades: 72 },
     level: "عالي",
     atRisk: false,
     course: "رؤية حاسوبية",
     lastSessionDate: "2026-04-28",
-    liveEngagement: 86,
+    liveEngagement: 95,
     multimodal: { visual: 42, audio: 28, digital: 30 },
     attendanceRate: 94,
     absenceRate: 6,
@@ -231,13 +229,13 @@ export const mockStudents: Student[] = [
   {
     id: "444008633",
     name: "هيفاء بن ناصر",
-    engagementScore: 71,
+    engagementScore: 93,
     criteria: { visual: 75, attendance: 80, grades: 58 },
     level: "متوسط",
     atRisk: false,
     course: "رؤية حاسوبية",
     lastSessionDate: "2026-04-28",
-    liveEngagement: 78,
+    liveEngagement: 94,
     multimodal: { visual: 38, audio: 22, digital: 40 },
     attendanceRate: 82,
     absenceRate: 18,
@@ -253,13 +251,13 @@ export const mockStudents: Student[] = [
   {
     id: "443007303",
     name: "نورة سليمان الهذيلان",
-    engagementScore: 76,
+    engagementScore: 95,
     criteria: { visual: 52, attendance: 65, grades: 56 },
     level: "متوسط",
     atRisk: false,
     course: "تعلم عميق",
     lastSessionDate: "2026-04-25",
-    liveEngagement: 76,
+    liveEngagement: 96,
     multimodal: { visual: 32, audio: 18, digital: 50 },
     attendanceRate: 68,
     absenceRate: 32,
@@ -318,13 +316,13 @@ export const mockStudents: Student[] = [
   {
     id: "444002211",
     name: "رغد محمد الشهري",
-    engagementScore: 67,
+    engagementScore: 74,
     criteria: { visual: 72, attendance: 60, grades: 70 },
     level: "متوسط",
     atRisk: false,
     course: "أنظمة ذكية",
     lastSessionDate: "2026-04-27",
-    liveEngagement: 62,
+    liveEngagement: 75,
     multimodal: { visual: 40, audio: 30, digital: 30 },
     attendanceRate: 76,
     absenceRate: 24,

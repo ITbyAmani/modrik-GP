@@ -27,21 +27,9 @@ export function InstructorHomePage() {
       </h1>
       <section className="instructor-dash-hero" aria-label="الملف والجدولة">
         <aside className="instructor-profile-panel">
-          <h2 className="instructor-profile-panel__title">الملف التعريفي</h2>
-          <p className="instructor-profile-panel__progress-label">
-            اكتمال الملف: {instructorProfile.profileCompletionPct}%
+          <p className="instructor-profile-panel__welcome">
+            مرحباً بك في لوحة المحاضر
           </p>
-          <div
-            className="instructor-profile-panel__progress-track"
-            role="presentation"
-          >
-            <div
-              className="instructor-profile-panel__progress-fill"
-              style={{
-                width: `${instructorProfile.profileCompletionPct}%`,
-              }}
-            />
-          </div>
 
           <div className="instructor-avatar-ring">
             <div className="instructor-avatar-ring__inner">
@@ -57,12 +45,6 @@ export function InstructorHomePage() {
 
           <p className="instructor-profile-panel__name">
             {instructorProfile.displayName}
-          </p>
-          <p className="instructor-profile-panel__course">
-            يدرّس حالياً:{" "}
-            <strong>
-              {instructorProfile.courseName} ({instructorProfile.courseCode})
-            </strong>
           </p>
           <p className="instructor-profile-panel__role">
             {instructorProfile.roleLine}
