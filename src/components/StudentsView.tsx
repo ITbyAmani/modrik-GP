@@ -68,37 +68,58 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
         </p>
       </header>
 
-      <div className="toolbar toolbar--students-filter">
-        <label className="filter-field__label" htmlFor="students-course-filter">
-          المقرر
-        </label>
-        <select
-          id="students-course-filter"
-          className="toolbar-select"
-          value={courseFilter}
-          onChange={(e) => setCourseFilter(e.target.value)}
-          aria-label="تصفية الطلاب حسب المقرر"
-        >
-          <option value="">جميع المقررات</option>
-          {courseOptions.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-        <label className="filter-field__label" htmlFor="students-search">
-          بحث
-        </label>
-        <input
-          id="students-search"
-          type="search"
-          className="search-input"
-          placeholder="بحث بالاسم أو الرقم الجامعي أو المقرر..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="بحث عن طالب"
-        />
-      </div>
+      <section className="students-filters" aria-label="تصفية وبحث الطلاب">
+        <div className="students-filters__head">
+          <span className="students-filters__head-title">تصفية القائمة</span>
+          <span className="students-filters__head-desc">
+            اختر مقرراً أو ابحث بالاسم أو الرقم الجامعي
+          </span>
+        </div>
+        <div className="students-filters__grid">
+          <div className="students-filters__field">
+            <label
+              className="students-filters__label"
+              htmlFor="students-course-filter"
+            >
+              المقرر
+            </label>
+            <div className="students-filters__control students-filters__control--select">
+              <select
+                id="students-course-filter"
+                className="students-filters__select"
+                value={courseFilter}
+                onChange={(e) => setCourseFilter(e.target.value)}
+              >
+                <option value="">جميع المقررات</option>
+                {courseOptions.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="students-filters__field">
+            <label className="students-filters__label" htmlFor="students-search">
+              بحث
+            </label>
+            <div className="students-filters__control students-filters__control--search">
+              <span className="students-filters__search-icon" aria-hidden>
+                ⌕
+              </span>
+              <input
+                id="students-search"
+                type="search"
+                className="students-filters__input"
+                placeholder="الاسم، الرقم الجامعي، أو المقرر…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                autoComplete="off"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="table-wrap">
         <table className="data-table data-table--students">

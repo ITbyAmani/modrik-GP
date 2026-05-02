@@ -1,4 +1,4 @@
-/** شعار مشروع التخرج (مُدرك) — يُستخدم في الشريط العلوي */
-import modrikGraduationLogo from "./assets/modrik-graduation-logo.png";
+/** شعار مشروع التخرج — أيقونة مُدرك (`شعار مشروع التخرج١.png`) */
+import modrikLogoMark from "./assets/modrik-logo-mark.png";
 
-export const PROJECT_LOGO_SRC = modrikGraduationLogo;
+export const PROJECT_LOGO_SRC = modrikLogoMark;

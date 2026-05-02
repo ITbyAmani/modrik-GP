@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { PROJECT_LOGO_SRC } from "../../branding";
+import sidebarFullLogo from "../../assets/modrik-sidebar-logo.png";
 import { mockStudents } from "../../data/seasMock";
 
 const atRiskCount = mockStudents.filter((s) => s.atRisk).length;
@@ -29,9 +29,11 @@ export function FacultySidebar() {
     <aside className="sidebar" aria-label="قائمة عضو هيئة التدريس">
       <div className="sidebar__brand">
         <img
-          className="sidebar__logo-img sidebar__logo-img--project"
-          src={PROJECT_LOGO_SRC}
+          className="sidebar__logo-img sidebar__logo-img--project sidebar__logo-img--full-brand"
+          src={sidebarFullLogo}
           alt="شعار مُدرك — مشروع التخرج"
+          width={120}
+          height={120}
           decoding="async"
         />
       </div>
