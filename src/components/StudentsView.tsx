@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { mockStudents } from "../data/seasMock";
 
@@ -22,9 +22,30 @@ function focusScorePillClass(score: number): string {
 
 export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
   const [query, setQuery] = useState("");
+  const [courseFilter, setCourseFilter] = useState("");
+
+  const baseRows = useMemo(
+    () =>
+      onlyAtRisk ? mockStudents.filter((s) => s.atRisk) : mockStudents,
+    [onlyAtRisk]
+  );
+
+  const courseOptions = useMemo(() => {
+    const names = Array.from(new Set(baseRows.map((s) => s.course)));
+    return names.sort((a, b) => a.localeCompare(b, "ar"));
+  }, [baseRows]);
+
+  useEffect(() => {
+    if (courseFilter && !courseOptions.includes(courseFilter)) {
+      setCourseFilter("");
+    }
+  }, [courseFilter, courseOptions]);
 
   const list = useMemo(() => {
-    let rows = onlyAtRisk ? mockStudents.filter((s) => s.atRisk) : mockStudents;
+    let rows = baseRows;
+    if (courseFilter) {
+      rows = rows.filter((s) => s.course === courseFilter);
+    }
     const q = query.trim();
     if (q) {
       rows = rows.filter(
@@ -35,7 +56,7 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
       );
     }
     return rows;
-  }, [onlyAtRisk, query]);
+  }, [baseRows, courseFilter, query]);
 
   return (
     <div className="page-stack">
@@ -47,8 +68,29 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
         </p>
       </header>
 
-      <div className="toolbar">
+      <div className="toolbar toolbar--students-filter">
+        <label className="filter-field__label" htmlFor="students-course-filter">
+          المقرر
+        </label>
+        <select
+          id="students-course-filter"
+          className="toolbar-select"
+          value={courseFilter}
+          onChange={(e) => setCourseFilter(e.target.value)}
+          aria-label="تصفية الطلاب حسب المقرر"
+        >
+          <option value="">جميع المقررات</option>
+          {courseOptions.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+        <label className="filter-field__label" htmlFor="students-search">
+          بحث
+        </label>
         <input
+          id="students-search"
           type="search"
           className="search-input"
           placeholder="بحث بالاسم أو الرقم الجامعي أو المقرر..."

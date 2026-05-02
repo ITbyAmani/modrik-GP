@@ -31,7 +31,7 @@ export function FacultySidebar() {
         <img
           className="sidebar__logo-img sidebar__logo-img--project"
           src={PROJECT_LOGO_SRC}
-          alt="شعار مُدرك — لوحة عضو هيئة التدريس"
+          alt="شعار مُدرك — مشروع التخرج"
           decoding="async"
         />
       </div>

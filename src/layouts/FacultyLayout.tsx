@@ -13,17 +13,12 @@ export function FacultyLayout() {
             <img
               className="topbar__logo topbar__logo--project"
               src={PROJECT_LOGO_SRC}
-              alt="شعار مُدرك — لوحة عضو هيئة التدريس"
+              alt="شعار مُدرك — مشروع التخرج"
               decoding="async"
             />
             <div>
-              <h1 className="visually-hidden">
-                مُدرك — لوحة عضو هيئة التدريس
-              </h1>
-              <p className="topbar__subtitle">
-                {currentLecture.title} ·{" "}
-                <span className="topbar__role">لوحة عضو هيئة التدريس</span>
-              </p>
+              <h1 className="visually-hidden">مُدرك</h1>
+              <p className="topbar__subtitle">{currentLecture.title}</p>
             </div>
           </div>
           <div className="topbar__meta">
