@@ -4,8 +4,8 @@ import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekC
 import { MultimodalIndicators } from "../../components/MultimodalIndicators";
 import {
   getDemoStudent,
+  getStudentWeeklyScheduleSlots,
   instructorScheduleWeekLabel,
-  instructorWeeklySchedule,
   mockSessions,
 } from "../../data/seasMock";
 
@@ -18,10 +18,9 @@ function initialsFromName(name: string) {
 export function StudentDashboardPage() {
   const student = getDemoStudent();
 
-  const slotsForCourse = useMemo(
-    () =>
-      instructorWeeklySchedule.filter((s) => s.courseName === student?.course),
-    [student?.course]
+  const slotsForWeek = useMemo(
+    () => (student ? getStudentWeeklyScheduleSlots(student) : []),
+    [student]
   );
 
   const sessionsForCourse = useMemo(() => {
@@ -62,18 +61,12 @@ export function StudentDashboardPage() {
               </span>
             </div>
             <div className="instructor-profile-panel__row">
-              <span className="instructor-profile-panel__k">المقرر</span>
-              <span className="instructor-profile-panel__v">{student.course}</span>
+              <span className="instructor-profile-panel__k">التخصص</span>
+              <span className="instructor-profile-panel__v">{student.major}</span>
             </div>
             <div className="instructor-profile-panel__row">
-              <span className="instructor-profile-panel__k">مستوى الانخراط</span>
-              <span className="instructor-profile-panel__v">{student.level}</span>
-            </div>
-            <div className="instructor-profile-panel__row">
-              <span className="instructor-profile-panel__k">آخر جلسة</span>
-              <span className="instructor-profile-panel__v">
-                {student.lastSessionDate}
-              </span>
+              <span className="instructor-profile-panel__k">الكلية</span>
+              <span className="instructor-profile-panel__v">{student.college}</span>
             </div>
           </div>
 
@@ -85,9 +78,9 @@ export function StudentDashboardPage() {
         <div className="welcome-banner-instructor student-dash-week-wrap">
           <div className="welcome-banner-instructor__schedule">
             <h2 className="student-dash-week__title">جدول مقرري هذا الأسبوع</h2>
-            {slotsForCourse.length > 0 ? (
+            {slotsForWeek.length > 0 ? (
               <InstructorWeekCalendar
-                slots={slotsForCourse}
+                slots={slotsForWeek}
                 weekLabel={instructorScheduleWeekLabel}
               />
             ) : (
@@ -120,36 +113,11 @@ export function StudentDashboardPage() {
         </article>
       </section>
 
-      <div className="two-col two-col--stretch">
-        <section className="panel">
-          <h2 className="panel__title">مؤشرات متعددة الوسائط</h2>
-          <p className="panel__hint">كما تظهر في مراقبة المحاضر (بيانات تجريبية).</p>
-          <MultimodalIndicators m={student.multimodal} />
-        </section>
-        <section className="panel">
-          <h2 className="panel__title">أبرز الدرجات</h2>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>المقرر</th>
-                  <th>الدرجة</th>
-                </tr>
-              </thead>
-              <tbody>
-                {student.gradeRows.map((g) => (
-                  <tr key={g.course}>
-                    <td>{g.course}</td>
-                    <td>
-                      {g.score} / {g.max}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </div>
+      <section className="panel">
+        <h2 className="panel__title">مؤشرات متعددة الوسائط</h2>
+        <p className="panel__hint">كما تظهر في مراقبة المحاضر (بيانات تجريبية).</p>
+        <MultimodalIndicators m={student.multimodal} />
+      </section>
 
       {student.recommendations.length > 0 ? (
         <section className="panel">

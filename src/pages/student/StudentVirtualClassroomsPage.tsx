@@ -1,37 +1,82 @@
 import { useMemo, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekCalendar";
 import { FocusCameraModal } from "../../components/student/FocusCameraModal";
 import {
   getDemoStudent,
-  instructorScheduleWeekLabel,
-  instructorWeeklySchedule,
+  getInstructorCalendarHighlightIso,
+  getStudentWeeklyScheduleSlots,
 } from "../../data/seasMock";
 
-const WEEKDAY_NAMES = [
-  "الأحد",
-  "الإثنين",
-  "الثلاثاء",
-  "الأربعاء",
-  "الخميس",
-] as const;
+type LectureStatus = "upcoming" | "live" | "ended";
+
+type LectureRow = {
+  id: string;
+  courseName: string;
+  courseCode: string;
+  room?: string;
+  dateIso: string;
+  startTime: string;
+  endTime: string;
+  status: LectureStatus;
+};
+
+function dateTimeOn(dateIso: string, hhmm: string): Date {
+  const [y, mo, d] = dateIso.split("-").map(Number);
+  const [hh, mm] = hhmm.split(":").map(Number);
+  return new Date(y, mo - 1, d, hh, mm, 0, 0);
+}
+
+function lectureStatus(now: Date, start: Date, end: Date): LectureStatus {
+  if (now < start) return "upcoming";
+  if (now > end) return "ended";
+  return "live";
+}
+
+function formatLectureDate(dateIso: string): string {
+  const [y, m, d] = dateIso.split("-").map(Number);
+  const dt = new Date(y, m - 1, d);
+  return dt.toLocaleDateString("ar-SA-u-nu-latn", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 export function StudentVirtualClassroomsPage() {
   const [cameraOpen, setCameraOpen] = useState(false);
   const student = getDemoStudent();
 
-  const slotsForCourse = useMemo(
-    () =>
-      instructorWeeklySchedule.filter((s) => s.courseName === student?.course),
-    [student?.course]
-  );
+  const lectures = useMemo((): LectureRow[] => {
+    if (!student) return [];
+    const weekDates = getInstructorCalendarHighlightIso();
+    const slots = getStudentWeeklyScheduleSlots(student);
+    const now = new Date();
 
-  const scheduleRows = useMemo(() => {
-    return [...slotsForCourse].sort((a, b) => {
-      if (a.weekday !== b.weekday) return a.weekday - b.weekday;
-      return a.startTime.localeCompare(b.startTime);
-    });
-  }, [slotsForCourse]);
+    return [...slots]
+      .sort((a, b) => {
+        const da = weekDates[a.weekday] ?? "";
+        const db = weekDates[b.weekday] ?? "";
+        if (da !== db) return da.localeCompare(db);
+        return a.startTime.localeCompare(b.startTime);
+      })
+      .map((s, i) => {
+        const dateIso = weekDates[s.weekday] ?? "";
+        const start = dateTimeOn(dateIso, s.startTime);
+        const end = dateTimeOn(dateIso, s.endTime);
+        const status = lectureStatus(now, start, end);
+        return {
+          id: `${s.weekday}-${s.startTime}-${i}`,
+          courseName: s.courseName,
+          courseCode: s.courseCode,
+          room: s.room,
+          dateIso,
+          startTime: s.startTime,
+          endTime: s.endTime,
+          status,
+        };
+      });
+  }, [student]);
 
   if (!student) {
     return <Navigate to="/" replace />;
@@ -47,82 +92,73 @@ export function StudentVirtualClassroomsPage() {
 
       <header className="page-header">
         <h1>الفصول الافتراضية</h1>
-        <p>
-          جدولة محاضرات مقررك لهذا الأسبوع، والانضمام للفصل الحالي عبر زر{" "}
-          <strong>انضم الآن</strong> مع معاينة كاميرا لمحاكاة مراقبة التركيز.
-        </p>
       </header>
 
-      <section className="panel student-virtual-cta-panel">
-        <div className="student-virtual-cta-panel__row">
-          <div>
-            <h2 className="panel__title">الفصل الافتراضي الحالي (تجريبي)</h2>
-            <p className="panel__hint">
-              {student.course} — يُفتح معاينة الكاميرا محلياً في المتصفح بعد
-              منح الإذن.
-            </p>
-          </div>
-          <button
-            type="button"
-            className="btn-primary student-virtual-join-btn"
-            onClick={() => setCameraOpen(true)}
-          >
-            انضم الآن
-          </button>
-        </div>
-      </section>
-
       <section className="panel">
-        <h2 className="panel__title">جدول المحاضرات (أسبوعي)</h2>
+        <h2 className="panel__title">جدولة المحاضرات</h2>
         <p className="panel__hint">
-          نفس أسبوع الجدول الأكاديمي في منصة المحاضر، مُصفّى لمقررك.
+          أسبوع العرض يطابق بيانات الجدول التجريبية (26 أبريل – 2 مايو 2026).
         </p>
-        <div className="welcome-banner-instructor student-virtual-week">
-          <div className="welcome-banner-instructor__schedule">
-            <InstructorWeekCalendar
-              slots={slotsForCourse}
-              weekLabel={instructorScheduleWeekLabel}
-            />
-          </div>
-        </div>
-      </section>
 
-      <section className="panel">
-        <h2 className="panel__title">قائمة المواعيد</h2>
-        <div className="table-wrap">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>اليوم</th>
-                <th>الوقت</th>
-                <th>المقرر</th>
-                <th>القاعة</th>
-              </tr>
-            </thead>
-            <tbody>
-              {scheduleRows.length === 0 ? (
-                <tr>
-                  <td colSpan={4} className="reports-page__empty-cell">
-                    لا توجد مواعيد مطابقة في البيانات التجريبية.
-                  </td>
-                </tr>
-              ) : (
-                scheduleRows.map((s, i) => (
-                  <tr key={`${s.weekday}-${s.startTime}-${i}`}>
-                    <td>{WEEKDAY_NAMES[s.weekday] ?? s.weekday}</td>
-                    <td dir="ltr">
-                      {s.startTime} – {s.endTime}
-                    </td>
-                    <td>
-                      {s.courseName} ({s.courseCode})
-                    </td>
-                    <td>{s.room ?? "—"}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+        {lectures.length === 0 ? (
+          <p className="reports-page__empty-cell panel__hint">
+            لا توجد محاضرات مطابقة لمقررك في البيانات التجريبية.
+          </p>
+        ) : (
+          <ul className="student-virtual-list">
+            {lectures.map((lec) => (
+              <li key={lec.id} className="student-virtual-list__item">
+                <div className="student-virtual-list__main">
+                  <div className="student-virtual-list__title-row">
+                    <strong className="student-virtual-list__title">
+                      {lec.courseName}
+                    </strong>
+                    <span className="student-virtual-list__code">{lec.courseCode}</span>
+                  </div>
+                  <p className="student-virtual-list__meta">
+                    <span>{formatLectureDate(lec.dateIso)}</span>
+                    <span className="student-virtual-list__sep" aria-hidden>
+                      ·
+                    </span>
+                    <span dir="ltr">
+                      {lec.startTime} – {lec.endTime}
+                    </span>
+                    {lec.room ? (
+                      <>
+                        <span className="student-virtual-list__sep" aria-hidden>
+                          ·
+                        </span>
+                        <span>{lec.room}</span>
+                      </>
+                    ) : null}
+                  </p>
+                </div>
+                <div className="student-virtual-list__action">
+                  {lec.status === "ended" ? (
+                    <span className="student-virtual-list__ended">انتهت</span>
+                  ) : lec.status === "live" ? (
+                    <button
+                      type="button"
+                      className="btn-primary student-virtual-list__join"
+                      onClick={() => setCameraOpen(true)}
+                    >
+                      انضم الآن
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="btn-primary student-virtual-list__join"
+                      disabled
+                      title="يُفعّل الزر عند بداية وقت المحاضرة"
+                    >
+                      انضم الآن
+                    </button>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <FocusCameraModal open={cameraOpen} onClose={() => setCameraOpen(false)} />

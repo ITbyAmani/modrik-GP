@@ -51,8 +51,8 @@ export function StudentProfileContent({ student }: Props) {
         <div>
           <h1>{student.name}</h1>
           <p className="profile-header__meta">
-            الرقم الجامعي: <strong dir="ltr">{student.id}</strong> · المقرر:{" "}
-            {student.course}
+            الرقم الجامعي: <strong dir="ltr">{student.id}</strong> · التخصص:{" "}
+            {student.major} · الكلية: {student.college}
           </p>
           <div className="profile-header__pills">
             <span className="score-pill">{student.engagementScore}% تفاعل مركب</span>

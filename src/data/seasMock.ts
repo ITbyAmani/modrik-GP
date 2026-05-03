@@ -21,6 +21,10 @@ export type Student = {
   level: EngagementLevel;
   atRisk: boolean;
   course: string;
+  /** التخصص الأكاديمي */
+  major: string;
+  /** الكلية */
+  college: string;
   lastSessionDate: string;
   /** مؤشر مباشر للشاشة الحية (0–100) */
   liveEngagement: number;
@@ -146,7 +150,77 @@ export const instructorWeeklySchedule: InstructorScheduleSlot[] = [
     courseCode: "CS 331",
     room: "قاعة 201",
   },
+  {
+    weekday: 2,
+    startTime: "13:00",
+    endTime: "14:50",
+    courseName: "رؤية حاسوبية",
+    courseCode: "CS 331",
+    room: "قاعة 201",
+  },
+  {
+    weekday: 3,
+    startTime: "08:00",
+    endTime: "09:50",
+    courseName: "رؤية حاسوبية",
+    courseCode: "CS 331",
+    room: "معمل صور",
+  },
+  {
+    weekday: 0,
+    startTime: "15:00",
+    endTime: "16:50",
+    courseName: "تعلم آلي",
+    courseCode: "CS 340",
+    room: "قاعة 112",
+  },
+  {
+    weekday: 1,
+    startTime: "10:00",
+    endTime: "11:50",
+    courseName: "تعلم آلي",
+    courseCode: "CS 340",
+    room: "قاعة 112",
+  },
+  {
+    weekday: 2,
+    startTime: "08:00",
+    endTime: "09:50",
+    courseName: "تعلم آلي",
+    courseCode: "CS 340",
+    room: "معمل تعلم آلي",
+  },
+  {
+    weekday: 3,
+    startTime: "13:00",
+    endTime: "14:50",
+    courseName: "تعلم آلي",
+    courseCode: "CS 340",
+    room: "قاعة 112",
+  },
+  {
+    weekday: 4,
+    startTime: "11:00",
+    endTime: "12:50",
+    courseName: "تعلم آلي",
+    courseCode: "CS 340",
+    room: "قاعة 118",
+  },
 ];
+
+/** خانات جدول الأسبوع لمقررات الطالب (أسماء المقررات من gradeRows) */
+export function getStudentWeeklyScheduleSlots(
+  student: Student
+): InstructorScheduleSlot[] {
+  const names = [...new Set(student.gradeRows.map((r) => r.course))];
+  return instructorWeeklySchedule
+    .filter((s) => names.includes(s.courseName))
+    .sort((a, b) =>
+      a.weekday !== b.weekday
+        ? a.weekday - b.weekday
+        : a.startTime.localeCompare(b.startTime)
+    );
+}
 
 /** تسمية أسبوع العرض (يمكن ربطها لاحقاً بالتاريخ الفعلي) */
 export const instructorScheduleWeekLabel =
@@ -216,6 +290,8 @@ export const mockStudents: Student[] = [
     level: "عالي",
     atRisk: false,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-28",
     liveEngagement: 95,
     multimodal: { visual: 42, audio: 28, digital: 30 },
@@ -238,6 +314,8 @@ export const mockStudents: Student[] = [
     level: "متوسط",
     atRisk: false,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-28",
     liveEngagement: 94,
     multimodal: { visual: 38, audio: 22, digital: 40 },
@@ -260,6 +338,8 @@ export const mockStudents: Student[] = [
     level: "متوسط",
     atRisk: false,
     course: "تعلم عميق",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-25",
     liveEngagement: 96,
     multimodal: { visual: 32, audio: 18, digital: 50 },
@@ -282,6 +362,8 @@ export const mockStudents: Student[] = [
     level: "عالي",
     atRisk: false,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-29",
     liveEngagement: 92,
     multimodal: { visual: 48, audio: 26, digital: 26 },
@@ -303,6 +385,8 @@ export const mockStudents: Student[] = [
     level: "منخفض",
     atRisk: true,
     course: "تعلم عميق",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-22",
     liveEngagement: 36,
     multimodal: { visual: 28, audio: 15, digital: 57 },
@@ -325,6 +409,8 @@ export const mockStudents: Student[] = [
     level: "متوسط",
     atRisk: false,
     course: "أنظمة ذكية",
+    major: "علوم الحاسب — مسار الأنظمة الذكية",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-27",
     liveEngagement: 75,
     multimodal: { visual: 40, audio: 30, digital: 30 },
@@ -346,6 +432,8 @@ export const mockStudents: Student[] = [
     level: "منخفض",
     atRisk: true,
     course: "أنظمة ذكية",
+    major: "علوم الحاسب — مسار الأنظمة الذكية",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-20",
     liveEngagement: 32,
     multimodal: { visual: 25, audio: 12, digital: 63 },
@@ -368,6 +456,8 @@ export const mockStudents: Student[] = [
     level: "عالي",
     atRisk: false,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-29",
     liveEngagement: 85,
     multimodal: { visual: 45, audio: 25, digital: 30 },
@@ -389,6 +479,8 @@ export const mockStudents: Student[] = [
     level: "عالي",
     atRisk: false,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-29",
     liveEngagement: 91,
     multimodal: { visual: 40, audio: 30, digital: 30 },
@@ -410,6 +502,8 @@ export const mockStudents: Student[] = [
     level: "منخفض",
     atRisk: true,
     course: "أنظمة ذكية",
+    major: "علوم الحاسب — مسار الأنظمة الذكية",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-21",
     liveEngagement: 48,
     multimodal: { visual: 22, audio: 18, digital: 60 },
@@ -432,6 +526,8 @@ export const mockStudents: Student[] = [
     level: "متوسط",
     atRisk: false,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-29",
     liveEngagement: 79,
     multimodal: { visual: 42, audio: 28, digital: 30 },
@@ -453,6 +549,8 @@ export const mockStudents: Student[] = [
     level: "عالي",
     atRisk: false,
     course: "تعلم عميق",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-28",
     liveEngagement: 83,
     multimodal: { visual: 36, audio: 34, digital: 30 },
@@ -474,6 +572,8 @@ export const mockStudents: Student[] = [
     level: "منخفض",
     atRisk: true,
     course: "رؤية حاسوبية",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-26",
     liveEngagement: 67,
     multimodal: { visual: 30, audio: 25, digital: 45 },
@@ -495,6 +595,8 @@ export const mockStudents: Student[] = [
     level: "عالي",
     atRisk: false,
     course: "أنظمة ذكية",
+    major: "علوم الحاسب — مسار الأنظمة الذكية",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-29",
     liveEngagement: 88,
     multimodal: { visual: 44, audio: 28, digital: 28 },
@@ -516,6 +618,8 @@ export const mockStudents: Student[] = [
     level: "متوسط",
     atRisk: false,
     course: "تعلم عميق",
+    major: "علوم الحاسب — مسار الذكاء الاصطناعي",
+    college: "كلية علوم الحاسب والمعلومات",
     lastSessionDate: "2026-04-27",
     liveEngagement: 76,
     multimodal: { visual: 35, audio: 35, digital: 30 },
