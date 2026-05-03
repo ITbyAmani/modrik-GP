@@ -319,6 +319,122 @@ body {
   margin-bottom: 0.4rem;
 }
 
+/* ——— الفصول الافتراضية (طالب) + نافذة كاميرا التركيز ——— */
+.student-virtual-cta-panel__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.student-virtual-join-btn {
+  flex-shrink: 0;
+  min-width: 9.5rem;
+  padding: 0.65rem 1.25rem;
+  font-weight: 800;
+}
+
+.student-virtual-week {
+  margin-top: 0.5rem;
+}
+
+.focus-camera-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.focus-camera-modal {
+  width: 100%;
+  max-width: 32rem;
+  max-height: min(90vh, 640px);
+  overflow: auto;
+  padding: 1.25rem 1.35rem 1.2rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.2);
+}
+
+.focus-camera-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.focus-camera-modal__title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--brand-dark);
+  line-height: 1.35;
+}
+
+.focus-camera-modal__close {
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.focus-camera-modal__close:hover {
+  background: var(--grey-200);
+}
+
+.focus-camera-modal__lead {
+  margin: 0 0 1rem;
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.focus-camera-modal__error {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: var(--radius-sm);
+  background: var(--danger-dim);
+  color: #7a2a2a;
+  font-size: 0.86rem;
+}
+
+.focus-camera-modal__video-wrap {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: #0f1419;
+  border: 1px solid var(--border);
+  aspect-ratio: 4 / 3;
+  max-height: 52vh;
+}
+
+.focus-camera-modal__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.focus-camera-modal__foot {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .shell__main {
   flex: 1;
   min-width: 0;

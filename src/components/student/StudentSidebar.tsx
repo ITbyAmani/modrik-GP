@@ -9,7 +9,7 @@ const navItems: {
 }[] = [
   { to: "/student", label: "الرئيسية", icon: "◉", end: true },
   { to: "/student/profile", label: "ملفي", icon: "▣" },
-  { to: "/student#sessions", label: "جلسات مقرري", icon: "▤" },
+  { to: "/student/virtual", label: "الفصول الافتراضية", icon: "▤" },
 ];
 
 export function StudentSidebar() {

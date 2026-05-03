@@ -9,6 +9,7 @@ import { ReportsAnalyticsPage } from "./pages/instructor/ReportsAnalyticsPage";
 import { SessionsView } from "./components/SessionsView";
 import { StudentDashboardPage } from "./pages/student/StudentDashboardPage";
 import { StudentMeProfilePage } from "./pages/student/StudentMeProfilePage";
+import { StudentVirtualClassroomsPage } from "./pages/student/StudentVirtualClassroomsPage";
 import "./App.css";
 
 /**
@@ -30,6 +31,7 @@ export default function App() {
       <Route element={<StudentLayout />}>
         <Route path="/student" element={<StudentDashboardPage />} />
         <Route path="/student/profile" element={<StudentMeProfilePage />} />
+        <Route path="/student/virtual" element={<StudentVirtualClassroomsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

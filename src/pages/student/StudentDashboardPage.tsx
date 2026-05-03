@@ -164,7 +164,7 @@ export function StudentDashboardPage() {
 
       <section className="panel" id="sessions" aria-labelledby="student-sessions-title">
         <h2 id="student-sessions-title" className="panel__title">
-          جلسات مقرري المسجّلة
+          الجلسات المسجّلة للمقرر
         </h2>
         <p className="panel__hint">
           جلسات تجريبية مرتبطة بمقررك ضمن منصة مُدرك (نفس مصدر تقارير المحاضر).
