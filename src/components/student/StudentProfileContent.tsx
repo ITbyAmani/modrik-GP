@@ -32,13 +32,16 @@ function StackedBreakdown({
 
 type Props = {
   student: Student;
+  /** إخفاء ترويسة الملف عند عرض المحتوى داخل لوحة الطالب (تتكرر مع بطاقة الملف) */
+  embedded?: boolean;
 };
 
-export function StudentProfileContent({ student }: Props) {
+export function StudentProfileContent({ student, embedded }: Props) {
   const m = student.multimodal;
 
   return (
     <>
+      {!embedded ? (
       <header className="profile-header">
         <div className="profile-header__avatar" aria-hidden>
           {student.name
@@ -64,6 +67,20 @@ export function StudentProfileContent({ student }: Props) {
           </div>
         </div>
       </header>
+      ) : (
+        <div className="student-dash-embedded-pills" aria-label="ملخص سريع من الملف">
+          <div className="profile-header__pills">
+            <span className="score-pill">
+              {student.engagementScore}% تفاعل مركب
+            </span>
+            {student.atRisk ? (
+              <span className="pill pill--low">معرّض للخطر</span>
+            ) : (
+              <span className="pill pill--high">ضمن المعدل الآمن</span>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="two-col">
         <section className="panel">
@@ -131,17 +148,6 @@ export function StudentProfileContent({ student }: Props) {
           </li>
         </ul>
       </section>
-
-      {student.recommendations.length > 0 ? (
-        <section className="panel">
-          <h2 className="panel__title">توصيات</h2>
-          <ul className="student-profile-recs">
-            {student.recommendations.map((line, i) => (
-              <li key={i}>{line}</li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
     </>
   );
 }

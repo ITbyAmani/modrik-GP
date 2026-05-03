@@ -4,9 +4,6 @@ export function studentTopbarSubtitle(
   studentName: string
 ): string {
   const p = pathname.replace(/\/+$/, "") || "/";
-  if (p === "/student/profile") {
-    return `ملفي — ${studentName}`;
-  }
   if (p === "/student/virtual") {
     return `الفصول الافتراضية — ${studentName}`;
   }

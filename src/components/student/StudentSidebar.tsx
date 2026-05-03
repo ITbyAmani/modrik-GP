@@ -8,7 +8,6 @@ const navItems: {
   end?: boolean;
 }[] = [
   { to: "/student", label: "الرئيسية", icon: "◉", end: true },
-  { to: "/student/profile", label: "ملفي", icon: "▣" },
   { to: "/student/virtual", label: "الفصول الافتراضية", icon: "▤" },
 ];
 

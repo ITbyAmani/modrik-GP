@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekCalendar";
-import { MultimodalIndicators } from "../../components/MultimodalIndicators";
+import { StudentProfileContent } from "../../components/student/StudentProfileContent";
 import {
   getDemoStudent,
   getStudentWeeklyScheduleSlots,
@@ -101,22 +101,7 @@ export function StudentDashboardPage() {
         </article>
       </section>
 
-      <section className="panel">
-        <h2 className="panel__title">مؤشرات متعددة الوسائط</h2>
-        <p className="panel__hint">كما تظهر في مراقبة المحاضر (بيانات تجريبية).</p>
-        <MultimodalIndicators m={student.multimodal} />
-      </section>
-
-      {student.recommendations.length > 0 ? (
-        <section className="panel">
-          <h2 className="panel__title">توصيات لك</h2>
-          <ul className="student-profile-recs">
-            {student.recommendations.map((line, i) => (
-              <li key={i}>{line}</li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
+      <StudentProfileContent student={student} embedded />
     </div>
   );
 }

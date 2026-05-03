@@ -206,6 +206,22 @@ export const instructorWeeklySchedule: InstructorScheduleSlot[] = [
     courseCode: "CS 340",
     room: "قاعة 118",
   },
+  {
+    weekday: 2,
+    startTime: "15:00",
+    endTime: "16:50",
+    courseName: "تعلم آلي",
+    courseCode: "CS 340",
+    room: "قاعة 305",
+  },
+  {
+    weekday: 4,
+    startTime: "13:00",
+    endTime: "14:50",
+    courseName: "رؤية حاسوبية",
+    courseCode: "CS 331",
+    room: "معمل صور",
+  },
 ];
 
 /** خانات جدول الأسبوع لمقررات الطالب (أسماء المقررات من gradeRows) */
