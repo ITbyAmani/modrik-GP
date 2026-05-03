@@ -34,6 +34,8 @@ export type Student = {
 
 export type Session = {
   id: string;
+  /** اسم المقرر كما في قائمة الطلاب — للتصفية حسب الترم */
+  course: string;
   courseName: string;
   date: string;
   avgEngagement: number;
@@ -536,6 +538,7 @@ export function getStudentById(id: string): Student | undefined {
 export const mockSessions: Session[] = [
   {
     id: "s1",
+    course: "رؤية حاسوبية",
     courseName: "رؤية حاسوبية — المحاضرة 12",
     date: "2026-04-29",
     avgEngagement: 76,
@@ -543,18 +546,92 @@ export const mockSessions: Session[] = [
     notes: "تحليل تعبيرات الوجه أثناء شرح CNN",
   },
   {
+    id: "s1-11",
+    course: "رؤية حاسوبية",
+    courseName: "رؤية حاسوبية — المحاضرة 11",
+    date: "2026-04-22",
+    avgEngagement: 72,
+    studentsCount: 27,
+  },
+  {
+    id: "s1-10",
+    course: "رؤية حاسوبية",
+    courseName: "رؤية حاسوبية — المحاضرة 10",
+    date: "2026-04-15",
+    avgEngagement: 68,
+    studentsCount: 26,
+  },
+  {
+    id: "s1-9",
+    course: "رؤية حاسوبية",
+    courseName: "رؤية حاسوبية — المحاضرة 9",
+    date: "2026-04-08",
+    avgEngagement: 74,
+    studentsCount: 28,
+  },
+  {
     id: "s2",
+    course: "تعلم عميق",
     courseName: "تعلم عميق — المحاضرة 8",
     date: "2026-04-25",
     avgEngagement: 61,
     studentsCount: 22,
   },
   {
+    id: "s2-7",
+    course: "تعلم عميق",
+    courseName: "تعلم عميق — المحاضرة 7",
+    date: "2026-04-18",
+    avgEngagement: 64,
+    studentsCount: 23,
+  },
+  {
+    id: "s2-6",
+    course: "تعلم عميق",
+    courseName: "تعلم عميق — المحاضرة 6",
+    date: "2026-04-11",
+    avgEngagement: 59,
+    studentsCount: 21,
+  },
+  {
+    id: "s2-5",
+    course: "تعلم عميق",
+    courseName: "تعلم عميق — المحاضرة 5",
+    date: "2026-04-04",
+    avgEngagement: 67,
+    studentsCount: 22,
+  },
+  {
     id: "s3",
+    course: "أنظمة ذكية",
     courseName: "أنظمة ذكية — مراجعة",
     date: "2026-04-27",
     avgEngagement: 69,
     studentsCount: 18,
+  },
+  {
+    id: "s3-6",
+    course: "أنظمة ذكية",
+    courseName: "أنظمة ذكية — المحاضرة 6",
+    date: "2026-04-20",
+    avgEngagement: 71,
+    studentsCount: 19,
+  },
+  {
+    id: "s3-5",
+    course: "أنظمة ذكية",
+    courseName: "أنظمة ذكية — المحاضرة 5",
+    date: "2026-04-13",
+    avgEngagement: 65,
+    studentsCount: 18,
+  },
+  {
+    id: "s3-4",
+    course: "أنظمة ذكية",
+    courseName: "أنظمة ذكية — المحاضرة 4",
+    date: "2026-04-06",
+    avgEngagement: 70,
+    studentsCount: 17,
   },
 ];
 

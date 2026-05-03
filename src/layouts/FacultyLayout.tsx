@@ -1,9 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { FacultySidebar } from "../components/faculty/FacultySidebar";
 import { PROJECT_LOGO_SRC } from "../branding";
-import { currentLecture, dashboardSummary } from "../data/seasMock";
+import { dashboardSummary } from "../data/seasMock";
+import { facultyTopbarSubtitle } from "../lib/facultyTopbarSubtitle";
 
 export function FacultyLayout() {
+  const { pathname } = useLocation();
+  const topbarSubtitle = facultyTopbarSubtitle(pathname);
+
   return (
     <div className="shell">
       <FacultySidebar />
@@ -18,7 +22,7 @@ export function FacultyLayout() {
             />
             <div>
               <h1 className="visually-hidden">مُدرك</h1>
-              <p className="topbar__subtitle">{currentLecture.title}</p>
+              <p className="topbar__subtitle">{topbarSubtitle}</p>
             </div>
           </div>
           <div className="topbar__meta">

@@ -1262,7 +1262,34 @@ body {
   gap: 1rem;
 }
 
+.sessions-view__summary {
+  margin: 0.65rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.sessions-view__empty {
+  margin: 0;
+  padding: 1.25rem 1.15rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.sessions-view__hint {
+  margin: 1.25rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 40rem;
+}
+
 .session-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1303,10 +1330,23 @@ body {
   font-weight: 600;
 }
 
+.session-card__footer {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  min-height: 0;
+}
+
 .session-card__notes {
-  margin: 1rem 0 0;
+  margin: 0;
   font-size: 0.82rem;
   color: var(--muted);
+  line-height: 1.45;
+}
+
+.session-card__notes--empty {
+  font-style: italic;
+  opacity: 0.9;
 }
 
 .report-summary {
