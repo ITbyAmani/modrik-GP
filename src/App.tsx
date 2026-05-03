@@ -1,11 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { FacultyLayout } from "./layouts/FacultyLayout";
+import { StudentLayout } from "./layouts/StudentLayout";
 import { InstructorHomePage } from "./pages/instructor/InstructorHomePage";
 import { MonitoringPage } from "./pages/instructor/MonitoringPage";
 import { StudentsView } from "./components/StudentsView";
 import { StudentProfilePage } from "./pages/instructor/StudentProfilePage";
 import { ReportsAnalyticsPage } from "./pages/instructor/ReportsAnalyticsPage";
 import { SessionsView } from "./components/SessionsView";
+import { StudentDashboardPage } from "./pages/student/StudentDashboardPage";
+import { StudentMeProfilePage } from "./pages/student/StudentMeProfilePage";
 import "./App.css";
 
 /**
@@ -23,6 +26,10 @@ export default function App() {
         <Route path="/at-risk" element={<StudentsView onlyAtRisk />} />
         <Route path="/sessions" element={<SessionsView />} />
         <Route path="/reports" element={<ReportsAnalyticsPage />} />
+      </Route>
+      <Route element={<StudentLayout />}>
+        <Route path="/student" element={<StudentDashboardPage />} />
+        <Route path="/student/profile" element={<StudentMeProfilePage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

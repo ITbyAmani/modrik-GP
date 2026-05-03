@@ -220,6 +220,105 @@ body {
   line-height: 1.4;
 }
 
+.sidebar__footer-link {
+  font-weight: 700;
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.sidebar__footer-link:hover {
+  text-decoration: underline;
+}
+
+.sidebar__footer-note {
+  margin-top: 0.45rem !important;
+  font-size: 0.7rem !important;
+}
+
+.sidebar__student-dash-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(69, 137, 168, 0.4);
+  background: linear-gradient(
+    180deg,
+    rgba(69, 137, 168, 0.12) 0%,
+    var(--surface) 100%
+  );
+  color: var(--brand-dark);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+.sidebar__student-dash-btn:hover {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.instructor-avatar-ring__inner--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--brand-dark);
+  letter-spacing: 0.02em;
+}
+
+.student-dash-profile__cta {
+  margin: 1rem 0 0;
+  text-align: center;
+}
+
+.student-dash-profile__cta a {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--brand-dark);
+  text-decoration: none;
+}
+
+.student-dash-profile__cta a:hover {
+  text-decoration: underline;
+}
+
+.student-dash-week__title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand-dark);
+}
+
+.student-dash-week__empty {
+  margin: 0;
+}
+
+.student-dash-kpis {
+  margin-bottom: 1.25rem;
+}
+
+.student-dash-week-wrap {
+  min-height: 0;
+}
+
+.student-profile-recs {
+  margin: 0;
+  padding-inline-start: 1.2rem;
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.student-profile-recs li {
+  margin-bottom: 0.4rem;
+}
+
 .shell__main {
   flex: 1;
   min-width: 0;

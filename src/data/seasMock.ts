@@ -535,6 +535,13 @@ export function getStudentById(id: string): Student | undefined {
   return mockStudents.find((s) => s.id === id);
 }
 
+/** طالب تجريبي لعرض لوحة «الطالب» دون مصادقة — يُستبدل لاحقاً بسياق المستخدم */
+export const demoStudentDashboardId = "444008593";
+
+export function getDemoStudent(): Student | undefined {
+  return getStudentById(demoStudentDashboardId);
+}
+
 export const mockSessions: Session[] = [
   {
     id: "s1",

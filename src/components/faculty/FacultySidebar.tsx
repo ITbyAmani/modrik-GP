@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import sidebarFullLogo from "../../assets/modrik-sidebar-logo.png";
 import { mockStudents } from "../../data/seasMock";
 
@@ -58,6 +58,9 @@ export function FacultySidebar() {
         ))}
       </nav>
       <div className="sidebar__footer">
+        <Link to="/student" className="sidebar__student-dash-btn">
+          لوحة الطالب (عرض تجريبي)
+        </Link>
         <p>بيانات تجريبية — واجهة عرض</p>
       </div>
     </aside>
