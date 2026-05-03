@@ -27,9 +27,7 @@ export function InstructorHomePage() {
       </h1>
       <section className="instructor-dash-hero" aria-label="الملف والجدولة">
         <aside className="instructor-profile-panel">
-          <p className="instructor-profile-panel__welcome">
-            مرحباً بك في لوحة المحاضر
-          </p>
+          <p className="instructor-profile-panel__welcome">مرحبًا بك</p>
 
           <div className="instructor-avatar-ring">
             <div className="instructor-avatar-ring__inner">
@@ -43,12 +41,32 @@ export function InstructorHomePage() {
             </div>
           </div>
 
-          <p className="instructor-profile-panel__name">
-            {instructorProfile.displayName}
-          </p>
-          <p className="instructor-profile-panel__role">
-            {instructorProfile.roleLine}
-          </p>
+          <div className="instructor-profile-panel__details">
+            <div className="instructor-profile-panel__row">
+              <span className="instructor-profile-panel__k">الاسم</span>
+              <span className="instructor-profile-panel__v">
+                هالة صالح المناعي
+              </span>
+            </div>
+            <div className="instructor-profile-panel__row">
+              <span className="instructor-profile-panel__k">الدرجة العلمية</span>
+              <span className="instructor-profile-panel__v">
+                {instructorProfile.degree}
+              </span>
+            </div>
+            <div className="instructor-profile-panel__row">
+              <span className="instructor-profile-panel__k">القسم</span>
+              <span className="instructor-profile-panel__v">
+                {instructorProfile.department}
+              </span>
+            </div>
+            <div className="instructor-profile-panel__row">
+              <span className="instructor-profile-panel__k">الكلية</span>
+              <span className="instructor-profile-panel__v">
+                {instructorProfile.college}
+              </span>
+            </div>
+          </div>
         </aside>
 
         <div className="welcome-banner-instructor welcome-banner-instructor--split">
@@ -90,22 +108,26 @@ export function InstructorHomePage() {
           إشعارات عند انخفاض تفاعل طالب معيّن أو انخفاض متوسط تفاعل القاعة، مع
           ربط بالمراقبة المباشرة.
         </p>
-        <ul className="alerts-compact alerts-compact--wide">
+        <ul className="smart-alerts" aria-label="قائمة التنبيهات">
           {mockAlerts.map((a) => (
-            <li key={a.id}>
-              <span
-                className={`alerts-compact__sev alerts-compact__sev--${a.severity}`}
-              />
-              <div>
-                <strong>{a.title}</strong>
-                <p>{a.detail}</p>
-                <time>{a.time}</time>
+            <li
+              key={a.id}
+              className={`smart-alerts__item smart-alerts__item--${a.severity}`}
+            >
+              <div className="smart-alerts__body">
+                <span
+                  className={`smart-alerts__dot smart-alerts__dot--${a.severity}`}
+                  aria-hidden
+                />
+                <strong className="smart-alerts__title">{a.title}</strong>
+                <time className="smart-alerts__time">{a.time}</time>
+                <p className="smart-alerts__detail">{a.detail}</p>
               </div>
             </li>
           ))}
         </ul>
-        <Link to="/monitoring" className="panel__cta">
-          فتح المراقبة المباشرة للجلسة →
+        <Link to="/monitoring" className="panel__cta panel__cta--alerts-footer">
+          فتح المراقبة المباشرة للجلسة ←
         </Link>
       </section>
     </div>
