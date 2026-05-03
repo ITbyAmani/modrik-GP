@@ -2,7 +2,6 @@ import { FormEvent, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import { AuthSplitShell } from "../../components/auth/AuthSplitShell";
-import { LoginPanelLogo } from "../../components/auth/LoginPanelLogo";
 
 export function StudentLoginPage() {
   const { role, loginAsStudent } = useAuth();
@@ -25,7 +24,6 @@ export function StudentLoginPage() {
 
   return (
     <AuthSplitShell>
-      <LoginPanelLogo />
       <h1 className="auth-split__signin-title">تسجيل الدخول</h1>
       <p className="auth-split__role-tag">بوابة الطلاب</p>
 
@@ -35,7 +33,7 @@ export function StudentLoginPage() {
             الرقم الجامعي
           </span>
           <input
-            className="auth-split-input auth-split-input--boxed"
+            className="auth-split-input auth-split-input--line"
             type="text"
             name="studentId"
             inputMode="numeric"
@@ -51,7 +49,7 @@ export function StudentLoginPage() {
             كلمة المرور
           </span>
           <input
-            className="auth-split-input auth-split-input--boxed"
+            className="auth-split-input auth-split-input--line"
             type="password"
             name="password"
             autoComplete="current-password"
@@ -65,18 +63,16 @@ export function StudentLoginPage() {
         </button>
       </form>
 
-      <p className="auth-split__note">
-        <strong>ملاحظة:</strong> للعرض التجريبي أي رقم جامعي وكلمة مرور تُقبل.
+      <p className="auth-split__forgot-row">
+        <button
+          type="button"
+          className="auth-split__text-link"
+          disabled
+          title="غير متاح في العرض التجريبي"
+        >
+          نسيت كلمة المرور؟
+        </button>
       </p>
-
-      <button
-        type="button"
-        className="auth-split-btn auth-split-btn--azure auth-split-btn--azure-wide"
-        disabled
-        title="غير متاح في العرض التجريبي"
-      >
-        تغيير كلمة المرور
-      </button>
 
       <p className="auth-split__panel-footer">
         © 2026 منصة مُدرك — واجهة عرض تخرجي
