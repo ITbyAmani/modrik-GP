@@ -1,12 +1,11 @@
 import { useMemo } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekCalendar";
 import { MultimodalIndicators } from "../../components/MultimodalIndicators";
 import {
   getDemoStudent,
   getStudentWeeklyScheduleSlots,
   instructorScheduleWeekLabel,
-  mockSessions,
 } from "../../data/seasMock";
 
 function initialsFromName(name: string) {
@@ -22,13 +21,6 @@ export function StudentDashboardPage() {
     () => (student ? getStudentWeeklyScheduleSlots(student) : []),
     [student]
   );
-
-  const sessionsForCourse = useMemo(() => {
-    if (!student) return [];
-    return [...mockSessions]
-      .filter((s) => s.course === student.course)
-      .sort((a, b) => b.date.localeCompare(a.date));
-  }, [student]);
 
   if (!student) {
     return <Navigate to="/" replace />;
@@ -69,10 +61,6 @@ export function StudentDashboardPage() {
               <span className="instructor-profile-panel__v">{student.college}</span>
             </div>
           </div>
-
-          <p className="student-dash-profile__cta">
-            <Link to="/student/profile">عرض ملفي التفصيلي</Link>
-          </p>
         </aside>
 
         <div className="welcome-banner-instructor student-dash-week-wrap">
@@ -129,45 +117,6 @@ export function StudentDashboardPage() {
           </ul>
         </section>
       ) : null}
-
-      <section className="panel" id="sessions" aria-labelledby="student-sessions-title">
-        <h2 id="student-sessions-title" className="panel__title">
-          الجلسات المسجّلة للمقرر
-        </h2>
-        <p className="panel__hint">
-          جلسات تجريبية مرتبطة بمقررك ضمن منصة مُدرك (نفس مصدر تقارير المحاضر).
-        </p>
-        <div className="table-wrap">
-          <table className="data-table data-table--reports-sessions">
-            <thead>
-              <tr>
-                <th>الجلسة</th>
-                <th>التاريخ</th>
-                <th>متوسط التفاعل</th>
-                <th>المسجلون</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sessionsForCourse.length === 0 ? (
-                <tr>
-                  <td colSpan={4} className="reports-page__empty-cell">
-                    لا توجد جلسات مسجّلة لهذا المقرر في العرض التجريبي.
-                  </td>
-                </tr>
-              ) : (
-                sessionsForCourse.map((s) => (
-                  <tr key={s.id}>
-                    <td>{s.courseName}</td>
-                    <td>{s.date}</td>
-                    <td>{s.avgEngagement}%</td>
-                    <td>{s.studentsCount}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-      </section>
     </div>
   );
 }

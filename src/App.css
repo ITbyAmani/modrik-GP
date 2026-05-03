@@ -320,6 +320,41 @@ body {
 }
 
 /* ——— الفصول الافتراضية (طالب) + نافذة كاميرا التركيز ——— */
+.page-header--virtual {
+  margin-bottom: 1rem;
+}
+
+.student-virtual-panel .student-virtual-view-filter.student-filter {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: none;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.student-virtual-panel .student-filter__bar {
+  width: 100%;
+  max-width: none;
+}
+
+.student-virtual-panel .student-filter__segment--course {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.student-virtual-panel .student-virtual-panel__body-title {
+  margin-top: 0;
+}
+
+.student-virtual-sessions-chart {
+  margin-bottom: 1.35rem;
+}
+
+.student-virtual-sessions-chart .trend-chart__wrap {
+  height: 200px;
+}
+
 .student-virtual-list {
   list-style: none;
   margin: 0.5rem 0 0;
