@@ -89,7 +89,7 @@ export function StudentVirtualClassroomsPage() {
   }, [student]);
 
   if (!student) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/student/login" replace />;
   }
 
   return (

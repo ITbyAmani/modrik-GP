@@ -1,6 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { RequireInstructor } from "./auth/RequireInstructor";
+import { RequireStudent } from "./auth/RequireStudent";
+import { WildcardRedirect } from "./auth/WildcardRedirect";
 import { FacultyLayout } from "./layouts/FacultyLayout";
 import { StudentLayout } from "./layouts/StudentLayout";
+import { InstructorLoginPage } from "./pages/auth/InstructorLoginPage";
+import { StudentLoginPage } from "./pages/auth/StudentLoginPage";
 import { InstructorHomePage } from "./pages/instructor/InstructorHomePage";
 import { MonitoringPage } from "./pages/instructor/MonitoringPage";
 import { StudentsView } from "./components/StudentsView";
@@ -19,22 +24,31 @@ import "./App.css";
 export default function App() {
   return (
     <Routes>
-      <Route element={<FacultyLayout />}>
-        <Route path="/" element={<InstructorHomePage />} />
-        <Route path="/monitoring" element={<MonitoringPage />} />
-        <Route path="/students/:studentId" element={<StudentProfilePage />} />
-        <Route path="/students" element={<StudentsView />} />
-        <Route path="/at-risk" element={<StudentsView onlyAtRisk />} />
-        <Route path="/sessions" element={<SessionsView />} />
-        <Route path="/reports" element={<ReportsAnalyticsPage />} />
+      <Route path="/login" element={<InstructorLoginPage />} />
+      <Route path="/student/login" element={<StudentLoginPage />} />
+
+      <Route element={<RequireInstructor />}>
+        <Route element={<FacultyLayout />}>
+          <Route path="/" element={<InstructorHomePage />} />
+          <Route path="/monitoring" element={<MonitoringPage />} />
+          <Route path="/students/:studentId" element={<StudentProfilePage />} />
+          <Route path="/students" element={<StudentsView />} />
+          <Route path="/at-risk" element={<StudentsView onlyAtRisk />} />
+          <Route path="/sessions" element={<SessionsView />} />
+          <Route path="/reports" element={<ReportsAnalyticsPage />} />
+        </Route>
       </Route>
-      <Route element={<StudentLayout />}>
-        <Route path="/student" element={<StudentDashboardPage />} />
-        <Route path="/student/profile" element={<Navigate to="/student" replace />} />
-        <Route path="/student/virtual" element={<StudentVirtualClassroomsPage />} />
-        <Route path="/student/notifications" element={<StudentNotificationsPage />} />
+
+      <Route element={<RequireStudent />}>
+        <Route element={<StudentLayout />}>
+          <Route path="/student" element={<StudentDashboardPage />} />
+          <Route path="/student/profile" element={<Navigate to="/student" replace />} />
+          <Route path="/student/virtual" element={<StudentVirtualClassroomsPage />} />
+          <Route path="/student/notifications" element={<StudentNotificationsPage />} />
+        </Route>
       </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
+
+      <Route path="*" element={<WildcardRedirect />} />
     </Routes>
   );
 }

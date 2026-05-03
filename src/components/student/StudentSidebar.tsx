@@ -1,4 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../auth/AuthContext";
 import sidebarFullLogo from "../../assets/modrik-sidebar-logo.png";
 
 const navItems: {
@@ -12,6 +13,14 @@ const navItems: {
 ];
 
 export function StudentSidebar() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/student/login", { replace: true });
+  }
+
   return (
     <aside className="sidebar" aria-label="قائمة الطالب">
       <div className="sidebar__brand">
@@ -43,10 +52,17 @@ export function StudentSidebar() {
       </nav>
       <div className="sidebar__footer">
         <p>
-          <Link to="/" className="sidebar__footer-link">
-            عرض واجهة المحاضر
+          <Link to="/login" className="sidebar__footer-link">
+            تسجيل دخول المحاضر
           </Link>
         </p>
+        <button
+          type="button"
+          className="btn-logout sidebar__logout"
+          onClick={handleLogout}
+        >
+          تسجيل الخروج
+        </button>
         <p className="sidebar__footer-note">بيانات تجريبية — واجهة عرض</p>
       </div>
     </aside>

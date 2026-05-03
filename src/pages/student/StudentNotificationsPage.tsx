@@ -5,7 +5,7 @@ export function StudentNotificationsPage() {
   const student = getDemoStudent();
 
   if (!student) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/student/login" replace />;
   }
 
   return (

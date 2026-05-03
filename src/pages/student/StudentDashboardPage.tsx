@@ -18,7 +18,7 @@ export function StudentDashboardPage() {
   );
 
   if (!student) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/student/login" replace />;
   }
 
   return (
