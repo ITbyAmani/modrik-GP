@@ -974,26 +974,16 @@ body {
 
 /* ——— تصفية صفحة الطلاب: شريط موحّد (مقرر | بحث) ——— */
 .student-filter {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.35rem;
   max-width: 56rem;
-  padding: 1rem 1.15rem 1.05rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
 }
 
 .student-filter__hint {
-  margin: 0 0 0.85rem;
-  padding: 0.35rem 0.65rem 0.4rem 0;
-  border-inline-start: 3px solid var(--brand);
-  padding-inline-start: 0.75rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--text);
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--muted);
   text-align: start;
-  line-height: 1.45;
-  opacity: 0.92;
+  line-height: 1.4;
 }
 
 .student-filter__bar {
@@ -1002,38 +992,44 @@ body {
   align-items: stretch;
   flex-wrap: wrap;
   gap: 0;
-  background: var(--grey-50);
-  border: 1px solid var(--grey-200);
-  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(30, 42, 54, 0.07);
   overflow: hidden;
+  border-inline-start: 3px solid var(--brand);
 }
 
 .student-filter__segment {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.75rem 1rem;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  padding: 0.65rem 0.9rem;
   min-width: 0;
 }
 
 .student-filter__segment--course {
-  flex: 0 1 14rem;
-  background: transparent;
+  flex: 0 1 13.5rem;
+  background: linear-gradient(180deg, #fafcfd 0%, var(--surface-2) 100%);
 }
 
 .student-filter__segment--search {
   flex: 1 1 12rem;
-  background: transparent;
+  background: var(--surface);
 }
 
 .student-filter__rule {
   width: 1px;
   align-self: stretch;
-  min-height: 3.4rem;
-  margin: 0.55rem 0;
-  background: var(--border);
-  border-radius: 1px;
+  min-height: 3.25rem;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--grey-300) 18%,
+    var(--grey-300) 82%,
+    transparent 100%
+  );
   flex-shrink: 0;
 }
 
@@ -1053,11 +1049,13 @@ body {
 }
 
 .student-filter__label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.03em;
-  text-transform: none;
+  flex-shrink: 0;
+  min-height: 1.15rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--brand-dark);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
   text-align: start;
 }
 
@@ -1065,33 +1063,30 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
-  min-height: 2.65rem;
-  padding: 0.4rem 0.65rem 0.4rem 0.75rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  gap: 0.45rem;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.55rem 0.35rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--grey-200);
   background: var(--surface);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease,
-    background-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .student-filter__shell:focus-within {
-  border-color: rgba(69, 137, 168, 0.45);
-  background: #fff;
-  box-shadow: 0 0 0 3px var(--brand-soft);
+  border-color: var(--brand);
+  box-shadow: 0 0 0 2px var(--brand-soft);
 }
 
 .student-filter__glyph {
   flex-shrink: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1;
-  color: var(--brand-dark);
-  opacity: 0.75;
+  color: var(--brand);
+  opacity: 0.88;
 }
 
 .student-filter__glyph--search {
-  font-size: 1rem;
-  opacity: 0.7;
+  font-size: 1.05rem;
 }
 
 .student-filter__select,
@@ -1101,9 +1096,9 @@ body {
   border: none;
   background: transparent;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.35;
   padding: 0.2rem 0;
 }
 
@@ -1111,13 +1106,12 @@ body {
   cursor: pointer;
   text-align: start;
   font-weight: 600;
-  color: var(--brand-dark);
 }
 
 .student-filter__input::placeholder {
   color: var(--muted);
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
 }
 
 .search-input {
