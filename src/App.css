@@ -299,12 +299,31 @@ body {
   margin: 0;
 }
 
-.student-dash-kpis {
+.student-dash-week-wrap {
+  min-height: 0;
+}
+
+.student-dash-page__intro {
   margin-bottom: 1.25rem;
 }
 
-.student-dash-week-wrap {
-  min-height: 0;
+.student-dash-page__intro h1 {
+  margin-bottom: 0.35rem;
+}
+
+.student-dash-page__lead {
+  margin: 0;
+  max-width: 40rem;
+}
+
+.student-dash-below {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.student-dash-page .instructor-dash-hero {
+  margin-bottom: 1.25rem;
 }
 
 /* ——— الفصول الافتراضية (طالب) + نافذة كاميرا التركيز ——— */
@@ -341,14 +360,6 @@ body {
 
 .student-virtual-sessions-chart .trend-chart__wrap {
   height: 200px;
-}
-
-.student-dash-embedded-pills {
-  margin-bottom: 1rem;
-}
-
-.student-dash-embedded-pills .profile-header__pills {
-  margin: 0;
 }
 
 .student-virtual-list {
@@ -609,6 +620,47 @@ body {
   color: var(--muted);
   font-weight: 500;
   border-color: var(--grey-300);
+}
+
+.student-topbar-notify {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--grey-300);
+  border-radius: 50%;
+  background: var(--grey-200);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.student-topbar-notify:hover {
+  background: var(--surface-2);
+  border-color: var(--brand);
+  color: var(--brand-dark);
+}
+
+.student-topbar-notify:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.student-topbar-notify--active {
+  background: var(--brand-soft);
+  border-color: rgba(69, 137, 168, 0.45);
+  color: var(--brand-dark);
+}
+
+.student-topbar-notify__icon {
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
 .main-area {

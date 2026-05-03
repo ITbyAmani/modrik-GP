@@ -7,5 +7,8 @@ export function studentTopbarSubtitle(
   if (p === "/student/virtual") {
     return `الفصول الافتراضية — ${studentName}`;
   }
+  if (p === "/student/notifications") {
+    return `التنبيهات — ${studentName}`;
+  }
   return `لوحة الطالبة — ${studentName}`;
 }

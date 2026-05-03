@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Navigate } from "react-router-dom";
+import instructorAvatar from "../../assets/instructor-avatar.svg";
 import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekCalendar";
 import { StudentProfileContent } from "../../components/student/StudentProfileContent";
 import {
@@ -7,12 +8,6 @@ import {
   getStudentWeeklyScheduleSlots,
   instructorScheduleWeekLabel,
 } from "../../data/seasMock";
-
-function initialsFromName(name: string) {
-  const p = name.trim().split(/\s+/).filter(Boolean);
-  if (p.length >= 2) return (p[0][0] + p[1][0]).slice(0, 2);
-  return name.slice(0, 2);
-}
 
 export function StudentDashboardPage() {
   const student = getDemoStudent();
@@ -26,18 +21,28 @@ export function StudentDashboardPage() {
     return <Navigate to="/" replace />;
   }
 
-  const ini = initialsFromName(student.name);
-
   return (
-    <div className="page-stack">
-      <h1 className="visually-hidden">لوحة الطالب — {student.name}</h1>
+    <div className="page-stack student-dash-page">
+      <header className="page-header student-dash-page__intro">
+        <h1>لوحة الطالب</h1>
+        <p className="panel__hint student-dash-page__lead">
+          نظرة على جدولك ومؤشرات التفاعل (بيانات تجريبية).
+        </p>
+      </header>
+
       <section className="instructor-dash-hero" aria-label="الملف والجدولة">
         <aside className="instructor-profile-panel">
           <p className="instructor-profile-panel__welcome">مرحباً</p>
 
           <div className="instructor-avatar-ring">
-            <div className="instructor-avatar-ring__inner instructor-avatar-ring__inner--initials">
-              <span aria-hidden>{ini}</span>
+            <div className="instructor-avatar-ring__inner">
+              <img
+                src={instructorAvatar}
+                alt=""
+                width={112}
+                height={112}
+                decoding="async"
+              />
             </div>
           </div>
 
@@ -80,28 +85,9 @@ export function StudentDashboardPage() {
         </div>
       </section>
 
-      <section className="kpi-grid student-dash-kpis" aria-label="ملخص سريع">
-        <article className="kpi-card">
-          <span className="kpi-card__label">درجة التركيز / التفاعل</span>
-          <span className="kpi-card__value kpi-card__value--sm">
-            {student.engagementScore}%
-          </span>
-        </article>
-        <article className="kpi-card">
-          <span className="kpi-card__label">نسبة الحضور</span>
-          <span className="kpi-card__value kpi-card__value--sm">
-            {student.attendanceRate}%
-          </span>
-        </article>
-        <article className="kpi-card">
-          <span className="kpi-card__label">التفاعل اللحظي (آخر جلسة)</span>
-          <span className="kpi-card__value kpi-card__value--sm">
-            {student.liveEngagement}%
-          </span>
-        </article>
-      </section>
-
-      <StudentProfileContent student={student} embedded />
+      <div className="student-dash-below">
+        <StudentProfileContent student={student} embedded />
+      </div>
     </div>
   );
 }

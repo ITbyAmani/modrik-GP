@@ -8,6 +8,7 @@ import { StudentProfilePage } from "./pages/instructor/StudentProfilePage";
 import { ReportsAnalyticsPage } from "./pages/instructor/ReportsAnalyticsPage";
 import { SessionsView } from "./components/SessionsView";
 import { StudentDashboardPage } from "./pages/student/StudentDashboardPage";
+import { StudentNotificationsPage } from "./pages/student/StudentNotificationsPage";
 import { StudentVirtualClassroomsPage } from "./pages/student/StudentVirtualClassroomsPage";
 import "./App.css";
 
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/student" element={<StudentDashboardPage />} />
         <Route path="/student/profile" element={<Navigate to="/student" replace />} />
         <Route path="/student/virtual" element={<StudentVirtualClassroomsPage />} />
+        <Route path="/student/notifications" element={<StudentNotificationsPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

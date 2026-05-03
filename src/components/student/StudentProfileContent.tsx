@@ -42,72 +42,35 @@ export function StudentProfileContent({ student, embedded }: Props) {
   return (
     <>
       {!embedded ? (
-      <header className="profile-header">
-        <div className="profile-header__avatar" aria-hidden>
-          {student.name
-            .split(/\s+/)
-            .filter(Boolean)
-            .slice(0, 2)
-            .map((w) => w[0])
-            .join("")}
-        </div>
-        <div>
-          <h1>{student.name}</h1>
-          <p className="profile-header__meta">
-            الرقم الجامعي: <strong dir="ltr">{student.id}</strong> · التخصص:{" "}
-            {student.major} · الكلية: {student.college}
-          </p>
-          <div className="profile-header__pills">
-            <span className="score-pill">{student.engagementScore}% تفاعل مركب</span>
-            {student.atRisk ? (
-              <span className="pill pill--low">معرّض للخطر</span>
-            ) : (
-              <span className="pill pill--high">ضمن المعدل الآمن</span>
-            )}
+        <header className="profile-header">
+          <div className="profile-header__avatar" aria-hidden>
+            {student.name
+              .split(/\s+/)
+              .filter(Boolean)
+              .slice(0, 2)
+              .map((w) => w[0])
+              .join("")}
           </div>
-        </div>
-      </header>
-      ) : (
-        <div className="student-dash-embedded-pills" aria-label="ملخص سريع من الملف">
-          <div className="profile-header__pills">
-            <span className="score-pill">
-              {student.engagementScore}% تفاعل مركب
-            </span>
-            {student.atRisk ? (
-              <span className="pill pill--low">معرّض للخطر</span>
-            ) : (
-              <span className="pill pill--high">ضمن المعدل الآمن</span>
-            )}
+          <div>
+            <h1>{student.name}</h1>
+            <p className="profile-header__meta">
+              الرقم الجامعي: <strong dir="ltr">{student.id}</strong> · التخصص:{" "}
+              {student.major} · الكلية: {student.college}
+            </p>
+            <div className="profile-header__pills">
+              <span className="score-pill">{student.engagementScore}% تفاعل مركب</span>
+              {student.atRisk ? (
+                <span className="pill pill--low">معرّض للخطر</span>
+              ) : (
+                <span className="pill pill--high">ضمن المعدل الآمن</span>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        </header>
+      ) : null}
 
-      <div className="two-col">
-        <section className="panel">
-          <h2 className="panel__title">الدرجات الأكاديمية</h2>
-          <div className="table-wrap">
-            <table className="data-table">
-              <thead>
-                <tr>
-                  <th>المقرر</th>
-                  <th>الدرجة</th>
-                </tr>
-              </thead>
-              <tbody>
-                {student.gradeRows.map((g) => (
-                  <tr key={g.course}>
-                    <td>{g.course}</td>
-                    <td>
-                      {g.score} / {g.max}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section className="panel">
+      {embedded ? (
+        <section className="panel student-dash-embedded-attendance">
           <h2 className="panel__title">سجل الحضور</h2>
           <p className="panel__hint">دمج مع بيانات الجامعة (وهمي).</p>
           <div className="attendance-block">
@@ -124,7 +87,51 @@ export function StudentProfileContent({ student, embedded }: Props) {
             <p className="muted-xs">نسبة الغياب: {student.absenceRate}%</p>
           </div>
         </section>
-      </div>
+      ) : (
+        <div className="two-col">
+          <section className="panel">
+            <h2 className="panel__title">الدرجات الأكاديمية</h2>
+            <div className="table-wrap">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>المقرر</th>
+                    <th>الدرجة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {student.gradeRows.map((g) => (
+                    <tr key={g.course}>
+                      <td>{g.course}</td>
+                      <td>
+                        {g.score} / {g.max}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="panel">
+            <h2 className="panel__title">سجل الحضور</h2>
+            <p className="panel__hint">دمج مع بيانات الجامعة (وهمي).</p>
+            <div className="attendance-block">
+              <div className="attendance-block__row">
+                <span>نسبة الحضور</span>
+                <strong>{student.attendanceRate}%</strong>
+              </div>
+              <div className="crit-track attendance-block__bar">
+                <div
+                  className="crit-fill"
+                  style={{ width: `${student.attendanceRate}%` }}
+                />
+              </div>
+              <p className="muted-xs">نسبة الغياب: {student.absenceRate}%</p>
+            </div>
+          </section>
+        </div>
+      )}
 
       <section className="panel">
         <h2 className="panel__title">تفصيل درجة التفاعل (متعدد الوسائط)</h2>
