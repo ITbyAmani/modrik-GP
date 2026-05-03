@@ -1,7 +1,8 @@
 import { FormEvent, useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import { AuthSplitShell } from "../../components/auth/AuthSplitShell";
+import { LoginPanelLogo } from "../../components/auth/LoginPanelLogo";
 
 export function StudentLoginPage() {
   const { role, loginAsStudent } = useAuth();
@@ -24,13 +25,9 @@ export function StudentLoginPage() {
 
   return (
     <AuthSplitShell>
+      <LoginPanelLogo />
       <h1 className="auth-split__signin-title">تسجيل الدخول</h1>
-      <p className="auth-split__sub">
-        محاضر؟{" "}
-        <Link to="/login" className="auth-split__sub-link">
-          دخول المحاضر
-        </Link>
-      </p>
+      <p className="auth-split__role-tag">بوابة الطلاب</p>
 
       <form className="auth-split-form" onSubmit={handleSubmit}>
         <label className="auth-split-field">
@@ -72,24 +69,14 @@ export function StudentLoginPage() {
         <strong>ملاحظة:</strong> للعرض التجريبي أي رقم جامعي وكلمة مرور تُقبل.
       </p>
 
-      <div className="auth-split__btn-row">
-        <button
-          type="button"
-          className="auth-split-btn auth-split-btn--azure"
-          disabled
-          title="غير متاح في العرض التجريبي"
-        >
-          تغيير كلمة المرور
-        </button>
-        <button
-          type="button"
-          className="auth-split-btn auth-split-btn--azure"
-          disabled
-          title="غير متاح في العرض التجريبي"
-        >
-          تحتاج مساعدة في الدخول؟
-        </button>
-      </div>
+      <button
+        type="button"
+        className="auth-split-btn auth-split-btn--azure auth-split-btn--azure-wide"
+        disabled
+        title="غير متاح في العرض التجريبي"
+      >
+        تغيير كلمة المرور
+      </button>
 
       <p className="auth-split__panel-footer">
         © 2026 منصة مُدرك — واجهة عرض تخرجي

@@ -1913,41 +1913,48 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2.5rem 1.75rem 2rem;
-  background: #fff;
+  background: linear-gradient(180deg, #fafcfd 0%, #ffffff 28%);
+  box-shadow: inset 1px 0 0 var(--border);
 }
 
 .auth-split__panel-inner {
   width: 100%;
-  max-width: 340px;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   gap: 0;
   min-height: min(560px, calc(100vh - 5rem));
 }
 
+.auth-split__logo-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 1.35rem;
+}
+
+.auth-split__logo {
+  display: block;
+  max-width: min(200px, 52vw);
+  height: auto;
+  max-height: 4.25rem;
+  width: auto;
+  object-fit: contain;
+}
+
 .auth-split__signin-title {
-  margin: 0 0 1.25rem;
-  font-size: 1.65rem;
-  font-weight: 600;
-  color: var(--text);
+  margin: 0 0 0.35rem;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #142434;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
-.auth-split__sub {
-  margin: -0.65rem 0 1.5rem;
-  font-size: 0.86rem;
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-.auth-split__sub-link {
+.auth-split__role-tag {
+  margin: 0 0 1.5rem;
+  font-size: 0.84rem;
   font-weight: 600;
   color: #0067b8;
-  text-decoration: none;
-}
-
-.auth-split__sub-link:hover {
-  text-decoration: underline;
 }
 
 .auth-split-form {
@@ -1971,13 +1978,13 @@ body {
 
 .auth-split-input--boxed {
   width: 100%;
-  padding: 0.65rem 0.75rem;
+  padding: 0.72rem 0.85rem;
   font-family: inherit;
   font-size: 0.95rem;
   color: var(--text);
   background: #fff;
-  border: 1px solid #c8c8c8;
-  border-radius: 2px;
+  border: 1px solid var(--grey-300);
+  border-radius: var(--radius-sm);
   outline: none;
   transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
@@ -1995,7 +2002,7 @@ body {
   font-family: inherit;
   font-size: 0.92rem;
   font-weight: 600;
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -2007,9 +2014,8 @@ body {
 
 .auth-split-btn--primary {
   margin-top: 0.35rem;
-  align-self: flex-start;
-  min-width: 7.5rem;
-  padding: 0.55rem 1.35rem;
+  width: 100%;
+  padding: 0.72rem 1rem;
   background: #0067b8;
   color: #fff;
 }
@@ -2029,14 +2035,6 @@ body {
   font-weight: 700;
 }
 
-.auth-split__btn-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.45rem;
-  margin-top: 1rem;
-  width: 100%;
-}
-
 .auth-split-btn--azure {
   width: 100%;
   padding: 0.5rem 0.4rem;
@@ -2045,6 +2043,17 @@ body {
   background: #0067b8;
   color: #fff;
   text-align: center;
+}
+
+.auth-split-btn--azure-wide {
+  margin-top: 1rem;
+  padding: 0.58rem 1rem;
+  font-size: 0.86rem;
+  background: #4a90c8;
+}
+
+.auth-split-btn--azure-wide:hover:not(:disabled) {
+  background: #3d7fb5;
 }
 
 .auth-split-btn--azure:hover:not(:disabled) {
@@ -2081,10 +2090,6 @@ body {
   .auth-split__panel-inner {
     min-height: 0;
     max-width: 400px;
-  }
-
-  .auth-split__btn-row {
-    grid-template-columns: 1fr;
   }
 }
 

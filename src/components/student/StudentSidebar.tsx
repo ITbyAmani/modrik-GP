@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import sidebarFullLogo from "../../assets/modrik-sidebar-logo.png";
 
@@ -51,11 +51,6 @@ export function StudentSidebar() {
         ))}
       </nav>
       <div className="sidebar__footer">
-        <p>
-          <Link to="/login" className="sidebar__footer-link">
-            تسجيل دخول المحاضر
-          </Link>
-        </p>
         <button
           type="button"
           className="btn-logout sidebar__logout"
