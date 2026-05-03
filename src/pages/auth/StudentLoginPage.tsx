@@ -24,16 +24,15 @@ export function StudentLoginPage() {
 
   return (
     <AuthSplitShell>
+      <p className="auth-split__eyebrow">منصة مُدرك</p>
       <h1 className="auth-split__signin-title">تسجيل الدخول</h1>
-      <p className="auth-split__role-tag">بوابة الطلاب</p>
+      <span className="auth-split__badge auth-split__badge--student">طالب</span>
 
       <form className="auth-split-form" onSubmit={handleSubmit}>
         <label className="auth-split-field">
-          <span className="auth-split-field__label visually-hidden">
-            الرقم الجامعي
-          </span>
+          <span className="auth-split-field__label">الرقم الجامعي</span>
           <input
-            className="auth-split-input auth-split-input--line"
+            className="auth-split-input"
             type="text"
             name="studentId"
             inputMode="numeric"
@@ -45,21 +44,19 @@ export function StudentLoginPage() {
           />
         </label>
         <label className="auth-split-field">
-          <span className="auth-split-field__label visually-hidden">
-            كلمة المرور
-          </span>
+          <span className="auth-split-field__label">كلمة المرور</span>
           <input
-            className="auth-split-input auth-split-input--line"
+            className="auth-split-input"
             type="password"
             name="password"
             autoComplete="current-password"
-            placeholder="كلمة المرور"
+            placeholder="••••••••"
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
           />
         </label>
         <button type="submit" className="auth-split-btn auth-split-btn--primary">
-          تسجيل الدخول
+          دخول بوابة الطالب
         </button>
       </form>
 
@@ -75,7 +72,7 @@ export function StudentLoginPage() {
       </p>
 
       <p className="auth-split__panel-footer">
-        © 2026 منصة مُدرك — واجهة عرض تخرجي
+        © 2026 مُدرك — عرض تخرجي
       </p>
     </AuthSplitShell>
   );

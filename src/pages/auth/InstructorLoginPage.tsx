@@ -24,40 +24,37 @@ export function InstructorLoginPage() {
 
   return (
     <AuthSplitShell>
+      <p className="auth-split__eyebrow">منصة مُدرك</p>
       <h1 className="auth-split__signin-title">تسجيل الدخول</h1>
-      <p className="auth-split__role-tag">بوابة المحاضرين</p>
+      <span className="auth-split__badge">محاضر</span>
 
       <form className="auth-split-form" onSubmit={handleSubmit}>
         <label className="auth-split-field">
-          <span className="auth-split-field__label visually-hidden">
-            البريد الجامعي
-          </span>
+          <span className="auth-split-field__label">البريد الجامعي</span>
           <input
-            className="auth-split-input auth-split-input--line"
+            className="auth-split-input"
             type="email"
             name="email"
             autoComplete="username"
-            placeholder="someone@example.com"
+            placeholder="you@pnu.edu.sa"
             value={email}
             onChange={(ev) => setEmail(ev.target.value)}
           />
         </label>
         <label className="auth-split-field">
-          <span className="auth-split-field__label visually-hidden">
-            كلمة المرور
-          </span>
+          <span className="auth-split-field__label">كلمة المرور</span>
           <input
-            className="auth-split-input auth-split-input--line"
+            className="auth-split-input"
             type="password"
             name="password"
             autoComplete="current-password"
-            placeholder="كلمة المرور"
+            placeholder="••••••••"
             value={password}
             onChange={(ev) => setPassword(ev.target.value)}
           />
         </label>
         <button type="submit" className="auth-split-btn auth-split-btn--primary">
-          تسجيل الدخول
+          دخول لوحة التحكم
         </button>
       </form>
 
@@ -73,7 +70,7 @@ export function InstructorLoginPage() {
       </p>
 
       <p className="auth-split__panel-footer">
-        © 2026 منصة مُدرك — واجهة عرض تخرجي
+        © 2026 مُدرك — عرض تخرجي
       </p>
     </AuthSplitShell>
   );
