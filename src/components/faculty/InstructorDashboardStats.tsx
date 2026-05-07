@@ -56,8 +56,7 @@ export function InstructorDashboardStats({
               بطاقات الإحصائيات السريعة
             </h2>
             <p className="instructor-dash-metrics__subtitle">
-              نظرة على المحاضرة الحالية، الحضور، الطلاب المعرضون للخطر،
-              والمراقبة.
+              نظرة على المحاضرة الحالية.
             </p>
           </header>
 

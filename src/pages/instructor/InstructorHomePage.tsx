@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { InstructorDashboardStats } from "../../components/faculty/InstructorDashboardStats";
 import { InstructorMonthCalendar } from "../../components/faculty/InstructorMonthCalendar";
 import { InstructorWeekCalendar } from "../../components/faculty/InstructorWeekCalendar";
@@ -105,8 +104,7 @@ export function InstructorHomePage() {
           قائمة التنبيهات الذكية (Alerts)
         </h2>
         <p className="panel__hint">
-          إشعارات عند انخفاض تفاعل طالب معيّن أو انخفاض متوسط تفاعل القاعة، مع
-          ربط بالمراقبة المباشرة.
+          إشعارات عند انخفاض تفاعل طالب معيّن أو انخفاض متوسط تفاعل القاعة.
         </p>
         <ul className="smart-alerts" aria-label="قائمة التنبيهات">
           {mockAlerts.map((a) => (
@@ -126,9 +124,6 @@ export function InstructorHomePage() {
             </li>
           ))}
         </ul>
-        <Link to="/monitoring" className="panel__cta panel__cta--alerts-footer">
-          فتح المراقبة المباشرة للجلسة ←
-        </Link>
       </section>
     </div>
   );

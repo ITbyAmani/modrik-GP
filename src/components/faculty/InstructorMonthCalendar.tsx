@@ -1,6 +1,14 @@
 import { useMemo } from "react";
 
-const WEEK_SHORT = ["أحد", "إثنين", "ثلاث", "أربع", "خميس", "جمعة", "سبت"];
+const WEEK_SHORT = [
+  "الأحد",
+  "الإثنين",
+  "الثلاثاء",
+  "الأربعاء",
+  "الخميس",
+  "الجمعة",
+  "السبت",
+];
 
 function pad(n: number): string {
   return n < 10 ? `0${n}` : `${n}`;
@@ -89,6 +97,9 @@ export function InstructorMonthCalendar({
   monthIndex,
   highlightedDates,
 }: Props) {
+  const now = new Date();
+  const todayIso = toISO(now.getFullYear(), now.getMonth(), now.getDate());
+
   const highlightSet = useMemo(
     () => new Set(highlightedDates),
     [highlightedDates]
@@ -119,13 +130,16 @@ export function InstructorMonthCalendar({
         ))}
         {cells.map((c) => {
           const has = c.iso && highlightSet.has(c.iso);
+          const isToday = c.iso === todayIso;
           return (
             <div
               key={c.key}
               role="gridcell"
               className={`instructor-month-cal__cell${
                 !c.inMonth ? " instructor-month-cal__cell--muted" : ""
-              }${has ? " instructor-month-cal__cell--event" : ""}`}
+              }${has ? " instructor-month-cal__cell--event" : ""}${
+                isToday ? " instructor-month-cal__cell--today" : ""
+              }`}
             >
               {c.day !== null ? <span>{c.day}</span> : null}
             </div>
