@@ -1,15 +1,10 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { FacultySidebar } from "../components/faculty/FacultySidebar";
 import { PROJECT_LOGO_SRC } from "../branding";
-import { dashboardSummary } from "../data/seasMock";
-import { facultyTopbarSubtitle } from "../lib/facultyTopbarSubtitle";
 
 export function FacultyLayout() {
-  const { pathname } = useLocation();
-  const topbarSubtitle = facultyTopbarSubtitle(pathname);
-
   return (
-    <div className="shell">
+    <div className="shell shell--faculty-ui">
       <FacultySidebar />
       <div className="shell__main">
         <header className="topbar">
@@ -22,13 +17,8 @@ export function FacultyLayout() {
             />
             <div>
               <h1 className="visually-hidden">مُدرك</h1>
-              <p className="topbar__subtitle">{topbarSubtitle}</p>
+              <p className="topbar__subtitle topbar__subtitle--brand">منصة مُدرك</p>
             </div>
-          </div>
-          <div className="topbar__meta">
-            <span className="chip chip--muted">
-              متوسط الأسبوع: {dashboardSummary.avgEngagementThisWeek}%
-            </span>
           </div>
         </header>
         <main className="main-area">

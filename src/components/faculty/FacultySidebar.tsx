@@ -37,14 +37,16 @@ export function FacultySidebar() {
   return (
     <aside className="sidebar" aria-label="قائمة عضو هيئة التدريس">
       <div className="sidebar__brand">
-        <img
-          className="sidebar__logo-img sidebar__logo-img--project sidebar__logo-img--full-brand"
-          src={sidebarFullLogo}
-          alt="شعار مُدرك — مشروع التخرج"
-          width={120}
-          height={120}
-          decoding="async"
-        />
+        <div className="sidebar__logo-circle">
+          <img
+            className="sidebar__logo-img sidebar__logo-img--project sidebar__logo-img--full-brand"
+            src={sidebarFullLogo}
+            alt="شعار مُدرك — مشروع التخرج"
+            width={120}
+            height={120}
+            decoding="async"
+          />
+        </div>
       </div>
       <nav className="sidebar__nav">
         {navItems.map(({ to, label, icon, end, badge }) => (
