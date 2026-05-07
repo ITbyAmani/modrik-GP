@@ -54,18 +54,10 @@ export function StudentsView({ onlyAtRisk = false }: { onlyAtRisk?: boolean }) {
 
   return (
     <div className="page-stack">
-      <header className="page-header">
-        <h1>{onlyAtRisk ? "طلاب يحتاجون دعم" : "الطلاب"}</h1>
-        <p>
-          قائمة الطلاب مع درجة التركيز — افتح{" "}
-          <strong>ملف الطالب</strong> للتحليل التفصيلي والتوصيات.
-        </p>
-      </header>
-
-      <section className="student-filter" aria-label="تصفية وبحث الطلاب">
-        <p className="student-filter__hint">
-          اختر مقرراً أو ابحث بالاسم / الرقم الجامعي / المقرر
-        </p>
+      <section
+        className="student-filter student-filter--faculty"
+        aria-label="تصفية وبحث الطلاب"
+      >
         <div className="student-filter__bar">
           <div className="student-filter__segment student-filter__segment--course">
             <label className="student-filter__label" htmlFor="students-course-filter">

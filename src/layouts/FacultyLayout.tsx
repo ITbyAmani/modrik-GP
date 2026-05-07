@@ -1,9 +1,11 @@
 import { Outlet, useLocation } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 import { FacultySidebar } from "../components/faculty/FacultySidebar";
 import { PROJECT_LOGO_SRC } from "../branding";
 
 export function FacultyLayout() {
   const { pathname } = useLocation();
+  const { logout } = useAuth();
 
   function currentPageTitle(path: string): string {
     const p = path.replace(/\/+$/, "") || "/";
@@ -34,6 +36,15 @@ export function FacultyLayout() {
               <p className="topbar__subtitle topbar__subtitle--brand">منصة مُدرك</p>
               <p className="topbar__subtitle topbar__subtitle--page">{currentPageTitle(pathname)}</p>
             </div>
+          </div>
+          <div className="topbar__meta">
+            <button
+              type="button"
+              className="topbar__logout"
+              onClick={() => logout()}
+            >
+              تسجيل الخروج
+            </button>
           </div>
         </header>
         <main className="main-area">

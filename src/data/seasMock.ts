@@ -737,14 +737,6 @@ export const mockSessions: Session[] = [
     studentsCount: 21,
   },
   {
-    id: "s2-5",
-    course: "تعلم عميق",
-    courseName: "تعلم عميق — المحاضرة 5",
-    date: "2026-04-04",
-    avgEngagement: 67,
-    studentsCount: 22,
-  },
-  {
     id: "s3",
     course: "أنظمة ذكية",
     courseName: "أنظمة ذكية — مراجعة",
@@ -767,14 +759,6 @@ export const mockSessions: Session[] = [
     date: "2026-04-13",
     avgEngagement: 65,
     studentsCount: 18,
-  },
-  {
-    id: "s3-4",
-    course: "أنظمة ذكية",
-    courseName: "أنظمة ذكية — المحاضرة 4",
-    date: "2026-04-06",
-    avgEngagement: 70,
-    studentsCount: 17,
   },
 ];
 

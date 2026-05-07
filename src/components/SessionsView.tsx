@@ -43,19 +43,10 @@ export function SessionsView() {
 
   return (
     <div className="page-stack">
-      <header className="page-header">
-        <h1>الجلسات التعليمية</h1>
-        <p>
-          بعد كل جلسة: دمج إطارات الكاميرا (تعابير، اتجاه الرأس، نظرة) مع سجلات
-          الحضور والدرجات لحساب درجة التفاعل.
-        </p>
-      </header>
-
-      <section className="student-filter" aria-label="تصفية وبحث الجلسات">
-        <p className="student-filter__hint">
-          اختر مقرراً لعرض <strong>جميع محاضراته</strong> المسجّلة خلال الترم، ثم
-          يمكنك تصغير القائمة بالبحث داخل العناوين.
-        </p>
+      <section
+        className="student-filter student-filter--faculty"
+        aria-label="تصفية وبحث الجلسات"
+      >
         <div className="student-filter__bar">
           <div className="student-filter__segment student-filter__segment--course">
             <label className="student-filter__label" htmlFor="sessions-course-filter">

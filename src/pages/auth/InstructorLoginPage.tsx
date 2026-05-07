@@ -54,7 +54,7 @@ export function InstructorLoginPage() {
           />
         </label>
         <button type="submit" className="auth-split-btn auth-split-btn--primary">
-          دخول لوحة التحكم
+          تسجيل الدخول
         </button>
       </form>
 

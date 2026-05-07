@@ -210,26 +210,12 @@ export function ReportsAnalyticsPage() {
 
   return (
     <div className="page-stack reports-page">
-      <header className="reports-page__hero page-header">
-        <h1>التقارير والتحليلات</h1>
-        <p>
-          فلاتر للفترة والمقرر مع <strong>محاكاة تجريبية</strong> للتواريخ (مرجع
-          نهاية الفصل: {REPORT_ANCHOR})، ومخطط أسبوعي، ومقارنة سريعة، وتصدير CSV.
-        </p>
-      </header>
-
       <section
         className="panel reports-page__filters-panel"
-        aria-labelledby="reports-filters-title"
+        aria-label="تصفية التقارير والتصدير"
       >
-        <h2 id="reports-filters-title" className="panel__title">
-          تخصيص العرض
-        </h2>
-        <p className="student-filter__hint">
-          اختر فترة ومقرراً ثم ضيّق النتائج بالبحث — نفس أسلوب تصفية صفحة الطلاب
-          (هوية مُدرك).
-        </p>
-        <div className="student-filter__bar reports-page__filters-bar">
+        <div className="student-filter student-filter--faculty">
+          <div className="student-filter__bar reports-page__filters-bar">
           <div className="student-filter__segment student-filter__segment--course">
             <label className="student-filter__label" htmlFor="reports-period">
               الفترة الزمنية
@@ -301,6 +287,7 @@ export function ReportsAnalyticsPage() {
               />
             </div>
           </div>
+        </div>
         </div>
         <p className="panel__hint reports-page__filter-hint">
           الفترة: <strong>{periodLabel}</strong>
