@@ -2915,6 +2915,10 @@ body {
   border: 1px solid rgba(33, 140, 170, 0.18);
 }
 
+.shell--faculty-ui .instructor-dash-metrics__charts .panel--chart .trend-chart__wrap {
+  height: auto;
+}
+
 .shell--faculty-ui .instructor-dash-metrics .trend-chart__xlabels {
   color: #5f6f77;
 }
@@ -4023,6 +4027,34 @@ body {
     min-height: 8.75rem;
     height: auto;
   }
+
+  .instructor-dash-metrics__charts-col {
+    min-height: 0;
+    height: auto;
+  }
+
+  .instructor-dash-metrics__charts.dashboard-charts-grid {
+    flex: 0 1 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .instructor-dash-metrics__charts .panel--chart {
+    flex: none;
+    min-height: 240px;
+    height: auto;
+    display: block;
+  }
+
+  .instructor-dash-metrics__charts .panel--chart .trend-chart {
+    display: block;
+  }
+
+  .instructor-dash-metrics__charts .panel--chart .trend-chart__wrap {
+    flex: none;
+    height: 180px;
+    min-height: 180px;
+  }
 }
 
 .instructor-dash-metrics__stats-col {
@@ -4034,6 +4066,10 @@ body {
 
 .instructor-dash-metrics__charts-col {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  height: 100%;
 }
 
 /* أربع بطاقات بنفس الارتفاع داخل عمود الإحصائيات */
@@ -4073,6 +4109,7 @@ body {
   margin-top: 0;
   margin-bottom: 0.85rem;
   padding-top: 0;
+  flex-shrink: 0;
 }
 
 .instructor-dash-metrics__title {
@@ -4095,16 +4132,41 @@ body {
   max-width: 48rem;
 }
 
-/* رسميان فوق بعض بعرض العمود (مستطيلان عمودياً) */
+/* رسميان عمودياً: يملآن ارتفاع العمود — لا فراغ تحت بطاقة المحاضرة الحالية */
 .instructor-dash-metrics__charts.dashboard-charts-grid {
-  margin-bottom: 0;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
   gap: 1rem;
+  margin-bottom: 0;
 }
 
 .instructor-dash-metrics__charts .panel--chart {
+  flex: 1 1 0;
+  min-height: 0;
   width: 100%;
-  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.instructor-dash-metrics__charts .panel--chart .panel__title,
+.instructor-dash-metrics__charts .panel--chart .panel__hint {
+  flex-shrink: 0;
+}
+
+.instructor-dash-metrics__charts .panel--chart .trend-chart {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.instructor-dash-metrics__charts .panel--chart .trend-chart__wrap {
+  flex: 1 1 auto;
+  min-height: 120px;
+  height: auto;
 }
 
 .kpi-card__label--single {
