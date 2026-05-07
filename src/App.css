@@ -1964,10 +1964,6 @@ body {
 }
 
 /* شريط التصفية — نفس لغة الشريط العلوي (حدود رمادية + شريط سفلي تركواز + ظل خفيف) */
-.shell--faculty-ui .reports-page__filters-panel .student-filter--faculty {
-  margin-bottom: 0;
-}
-
 .shell--faculty-ui .student-filter--faculty .student-filter__bar {
   padding: 0.5rem 0.9rem;
   min-height: 58px;
@@ -2042,20 +2038,16 @@ body {
   margin-bottom: 0;
 }
 
-.shell--faculty-ui .reports-page__filters-panel {
-  border: 1px solid rgba(33, 140, 170, 0.28);
-  border-inline-start: 1px solid rgba(33, 140, 170, 0.28);
-  border-radius: 18px;
-  background: linear-gradient(
-    180deg,
-    rgba(33, 140, 170, 0.12) 0%,
-    rgba(255, 255, 255, 0.94) 100%
-  );
-  box-shadow: 0 12px 28px rgba(33, 140, 170, 0.1);
+.shell--faculty-ui .main-area .reports-page .reports-page__filters-extra {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .shell--faculty-ui .main-area .reports-page .reports-page__filter-hint {
-  margin-top: 1rem;
+  margin-top: 0;
   padding-top: 0;
   border-top: none;
   color: var(--muted);
@@ -2198,7 +2190,8 @@ body {
   border-radius: 12px;
 }
 
-.shell--faculty-ui .main-area .reports-page .data-table--reports-sessions thead th {
+.shell--faculty-ui .main-area .reports-page .data-table--reports-sessions thead th,
+.shell--faculty-ui .student-virtual-panel .data-table--reports-sessions thead th {
   background: var(--surface-2);
   color: var(--faculty-accent);
   font-weight: 700;
@@ -2477,7 +2470,7 @@ body {
 }
 
 .shell--faculty-ui .sidebar__footer p {
-  color: #5d6a70;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .shell--faculty-ui .sidebar__logout.btn-logout {
@@ -2506,6 +2499,173 @@ body {
 .shell--faculty-ui .sidebar__logout.btn-logout:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.85);
   outline-offset: 2px;
+}
+
+/* زر التنبيهات — نفس لغة الشريط العلوي للمحاضر */
+.shell--faculty-ui .student-topbar-notify {
+  border: 1px solid var(--faculty-line-55);
+  background: var(--surface);
+  color: #218caa;
+}
+
+.shell--faculty-ui .student-topbar-notify:hover {
+  border-color: var(--faculty-accent);
+  background: var(--faculty-accent-12);
+  color: #176e86;
+}
+
+.shell--faculty-ui .student-topbar-notify:focus-visible {
+  outline: 2px solid var(--faculty-accent);
+  outline-offset: 2px;
+}
+
+.shell--faculty-ui .student-topbar-notify--active {
+  background: rgba(33, 140, 170, 0.16);
+  border-color: var(--faculty-accent);
+  color: #176e86;
+}
+
+/* أزرار أساسية داخل لوحة الطالب/المحاضر */
+.shell--faculty-ui .main-area .btn-primary:not(:disabled) {
+  background: var(--faculty-accent);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.shell--faculty-ui .main-area .btn-primary:not(:disabled):hover {
+  background: #1b7e99;
+  filter: none;
+}
+
+/* صفحات الطالب: عناوين، مسار تنقل، بطاقات */
+.shell--faculty-ui .student-dash-page__intro h1,
+.shell--faculty-ui .page-header h1 {
+  color: #1b6f88;
+}
+
+.shell--faculty-ui .student-dash-page__lead,
+.shell--faculty-ui .page-header .panel__hint {
+  color: #5f6f77;
+}
+
+.shell--faculty-ui .student-dash-week__title {
+  color: #1b6f88;
+}
+
+.shell--faculty-ui .breadcrumb {
+  font-size: 0.82rem;
+  color: #5f6f77;
+}
+
+.shell--faculty-ui .breadcrumb a {
+  font-weight: 700;
+  color: #218caa;
+  text-decoration: none;
+}
+
+.shell--faculty-ui .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.shell--faculty-ui .student-dash-below .panel,
+.shell--faculty-ui .student-dash-embedded-attendance.panel {
+  border: 1px solid rgba(33, 140, 170, 0.24);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(33, 140, 170, 0.08);
+}
+
+.shell--faculty-ui .student-dash-below .panel__title,
+.shell--faculty-ui .student-dash-embedded-attendance .panel__title {
+  color: #1b6f88;
+}
+
+.shell--faculty-ui .student-dash-below .panel__hint,
+.shell--faculty-ui .student-dash-embedded-attendance .panel__hint {
+  color: #5f6f77;
+}
+
+.shell--faculty-ui .student-dash-below .crit-fill,
+.shell--faculty-ui .student-dash-embedded-attendance .crit-fill {
+  background: linear-gradient(90deg, #1b6f88 0%, #218caa 100%);
+}
+
+/* الفصول الافتراضية — لوحة وبطاقات مثل التقارير/الرئيسية */
+.shell--faculty-ui .student-virtual-panel.panel {
+  border: 1px solid rgba(33, 140, 170, 0.28);
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(33, 140, 170, 0.12) 0%,
+    rgba(255, 255, 255, 0.94) 100%
+  );
+  box-shadow: 0 12px 28px rgba(33, 140, 170, 0.1);
+}
+
+.shell--faculty-ui .student-virtual-panel .student-virtual-view-filter.student-filter {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 1.1rem;
+}
+
+.shell--faculty-ui .student-virtual-panel .panel__title,
+.shell--faculty-ui .student-virtual-panel .student-virtual-panel__body-title {
+  color: #1b6f88;
+}
+
+.shell--faculty-ui .student-virtual-panel .panel__hint {
+  color: #5f6f77;
+}
+
+.shell--faculty-ui .student-virtual-list__item {
+  border: 1px solid rgba(33, 140, 170, 0.24);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(33, 140, 170, 0.08);
+}
+
+.shell--faculty-ui .student-virtual-list__title {
+  color: #163f4b;
+}
+
+.shell--faculty-ui .student-virtual-list__ended {
+  border: 1px dashed rgba(33, 140, 170, 0.35);
+  background: rgba(33, 140, 170, 0.06);
+  color: #4d7280;
+}
+
+.shell--faculty-ui .student-virtual-sessions-chart .trend-chart__wrap {
+  background: #ffffff;
+  border: 1px solid rgba(33, 140, 170, 0.18);
+  border-radius: 12px;
+}
+
+.shell--faculty-ui .student-virtual-sessions-chart .trend-chart__title {
+  color: #4d7280;
+}
+
+.shell--faculty-ui .student-virtual-sessions-chart .trend-chart__xlabels {
+  color: #5f6f77;
+}
+
+.shell--faculty-ui .student-virtual-sessions-chart .trend-chart__svg polygon {
+  fill: rgba(33, 140, 170, 0.14) !important;
+}
+
+.shell--faculty-ui .student-virtual-sessions-chart .trend-chart__svg polyline {
+  stroke: #218caa !important;
+}
+
+.shell--faculty-ui .student-virtual-sessions-chart .trend-chart__svg circle {
+  fill: #ffffff !important;
+  stroke: #218caa !important;
+}
+
+.shell--faculty-ui .student-virtual-panel .table-wrap {
+  border: 1px solid rgba(33, 140, 170, 0.18);
+  border-radius: 12px;
 }
 
 .shell--faculty-ui .instructor-dash-hero {
@@ -3122,6 +3282,29 @@ body {
 }
 
 .auth-split-btn--primary:active {
+  transform: scale(0.99);
+}
+
+/* تسجيل دخول الطالب — لون هوية المحاضر/اللوحة، خط سفلي فقط (بدون فاصل رمادي فوق الزر) */
+.auth-split-form--student {
+  border-top: none;
+}
+
+.auth-split-form--student .auth-split-btn--primary.auth-split-btn--student-primary {
+  margin-top: 0.35rem;
+  background: #218caa;
+  border: none;
+  border-bottom: 3px solid #1b6f88;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 14px rgba(33, 140, 170, 0.2);
+}
+
+.auth-split-form--student .auth-split-btn--primary.auth-split-btn--student-primary:hover {
+  background: #1b7e99;
+  border-bottom-color: #155f73;
+}
+
+.auth-split-form--student .auth-split-btn--primary.auth-split-btn--student-primary:active {
   transform: scale(0.99);
 }
 
@@ -4356,14 +4539,9 @@ body {
 }
 
 /* ——— صفحة التقارير والتحليلات ——— */
-.reports-page__filters-panel {
-  overflow: hidden;
-  border-inline-start: 3px solid var(--brand);
-  background: linear-gradient(
-    180deg,
-    rgba(69, 137, 168, 0.07) 0%,
-    var(--surface) 28%
-  );
+.reports-page__filters-extra {
+  display: flex;
+  flex-direction: column;
 }
 
 .reports-page__filters-bar {
@@ -4371,9 +4549,9 @@ body {
 }
 
 .reports-page__filter-hint {
-  margin-top: 0.85rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border);
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
   line-height: 1.55;
 }
 
@@ -4381,12 +4559,12 @@ body {
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
-  background: linear-gradient(180deg, transparent 0%, var(--surface-2) 100%);
-  margin-inline: -1.35rem;
-  margin-bottom: -1.25rem;
-  padding-inline: 1.35rem;
-  padding-bottom: 1.15rem;
-  border-radius: 0 0 var(--radius) var(--radius);
+  background: transparent;
+  margin-inline: 0;
+  margin-bottom: 0;
+  padding-inline: 0;
+  padding-bottom: 0;
+  border-radius: 0;
 }
 
 .reports-page__filters-actions .report-actions {

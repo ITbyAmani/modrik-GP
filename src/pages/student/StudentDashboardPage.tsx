@@ -23,13 +23,7 @@ export function StudentDashboardPage() {
 
   return (
     <div className="page-stack student-dash-page">
-      <header className="page-header student-dash-page__intro">
-        <h1>لوحة الطالب</h1>
-        <p className="panel__hint student-dash-page__lead">
-          نظرة على جدولك ومؤشرات التفاعل (بيانات تجريبية).
-        </p>
-      </header>
-
+      <h1 className="visually-hidden">لوحة الطالب</h1>
       <section className="instructor-dash-hero" aria-label="الملف والجدولة">
         <aside className="instructor-profile-panel">
           <p className="instructor-profile-panel__welcome">مرحباً</p>

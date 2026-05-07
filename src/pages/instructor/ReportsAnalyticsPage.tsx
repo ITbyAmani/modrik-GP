@@ -211,11 +211,10 @@ export function ReportsAnalyticsPage() {
   return (
     <div className="page-stack reports-page">
       <section
-        className="panel reports-page__filters-panel"
+        className="student-filter student-filter--faculty"
         aria-label="تصفية التقارير والتصدير"
       >
-        <div className="student-filter student-filter--faculty">
-          <div className="student-filter__bar reports-page__filters-bar">
+        <div className="student-filter__bar reports-page__filters-bar">
           <div className="student-filter__segment student-filter__segment--course">
             <label className="student-filter__label" htmlFor="reports-period">
               الفترة الزمنية
@@ -288,7 +287,9 @@ export function ReportsAnalyticsPage() {
             </div>
           </div>
         </div>
-        </div>
+      </section>
+
+      <div className="reports-page__filters-extra">
         <p className="panel__hint reports-page__filter-hint">
           الفترة: <strong>{periodLabel}</strong>
           {course !== "all" ? (
@@ -318,7 +319,7 @@ export function ReportsAnalyticsPage() {
             </button>
           </div>
         </div>
-      </section>
+      </div>
 
       <div className="two-col two-col--stretch reports-page__charts">
         <section className="panel panel--chart">

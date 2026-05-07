@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { TrendLineChart } from "../../components/TrendLineChart";
 import { FocusCameraModal } from "../../components/student/FocusCameraModal";
 import {
@@ -94,19 +94,10 @@ export function StudentVirtualClassroomsPage() {
 
   return (
     <div className="page-stack">
-      <nav className="breadcrumb">
-        <Link to="/student">لوحة الطالب</Link>
-        <span aria-hidden> / </span>
-        <span>الفصول الافتراضية</span>
-      </nav>
-
-      <header className="page-header page-header--virtual">
-        <h1>الفصول الافتراضية</h1>
-      </header>
-
+      <h1 className="visually-hidden">الفصول الافتراضية</h1>
       <section className="panel student-virtual-panel" id="sessions">
         <div
-          className="student-filter student-virtual-view-filter"
+          className="student-filter student-filter--faculty student-virtual-view-filter"
           aria-label="نوع عرض الفصول الافتراضية"
         >
           <div className="student-filter__bar">

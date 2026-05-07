@@ -28,7 +28,7 @@ export function StudentLoginPage() {
       <h1 className="auth-split__signin-title">تسجيل الدخول</h1>
       <span className="auth-split__badge auth-split__badge--student">طالب</span>
 
-      <form className="auth-split-form" onSubmit={handleSubmit}>
+      <form className="auth-split-form auth-split-form--student" onSubmit={handleSubmit}>
         <label className="auth-split-field">
           <span className="auth-split-field__label">الرقم الجامعي</span>
           <input
@@ -55,8 +55,11 @@ export function StudentLoginPage() {
             onChange={(ev) => setPassword(ev.target.value)}
           />
         </label>
-        <button type="submit" className="auth-split-btn auth-split-btn--primary">
-          دخول بوابة الطالب
+        <button
+          type="submit"
+          className="auth-split-btn auth-split-btn--primary auth-split-btn--student-primary"
+        >
+          تسجيل الدخول
         </button>
       </form>
 
