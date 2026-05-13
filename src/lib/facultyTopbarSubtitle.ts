@@ -8,7 +8,7 @@ export function facultyTopbarSubtitle(pathname: string): string {
     return currentLecture.title;
   }
   if (p === "/sessions") {
-    return "الجلسات المسجّلة — جميع المقررات";
+    return "إدارة الجلسات التعليمية — عرض وإنشاء وبدء وإنهاء";
   }
   if (p === "/monitoring") {
     return `المراقبة المباشرة — ${instructorProfile.courseName} (${currentLecture.code})`;

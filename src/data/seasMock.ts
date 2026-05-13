@@ -36,6 +36,8 @@ export type Student = {
   recommendations: string[];
 };
 
+export type SessionLifecycle = "draft" | "scheduled" | "live" | "ended";
+
 export type Session = {
   id: string;
   /** اسم المقرر كما في قائمة الطلاب — للتصفية حسب الترم */
@@ -45,6 +47,11 @@ export type Session = {
   avgEngagement: number;
   studentsCount: number;
   notes?: string;
+  /**
+   * حالة الجلسة في واجهة إدارة الجلسات.
+   * غياب القيمة يُعامل كـ «منتهية» (أرشيف) للبيانات التجريبية القديمة.
+   */
+  sessionLifecycle?: SessionLifecycle;
 };
 
 export type AlertItem = {

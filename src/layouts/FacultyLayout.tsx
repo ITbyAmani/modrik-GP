@@ -14,7 +14,7 @@ export function FacultyLayout() {
     if (p === "/students") return "الطلاب";
     if (p === "/at-risk") return "طلاب يحتاجون دعم";
     if (p.startsWith("/students/")) return "ملف الطالب";
-    if (p === "/sessions") return "الجلسات";
+    if (p === "/sessions") return "الجلسات التعليمية";
     if (p === "/reports") return "التقارير والتحليلات";
     return "لوحة المحاضر";
   }

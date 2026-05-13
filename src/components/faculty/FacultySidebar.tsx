@@ -20,7 +20,7 @@ const navItems: {
     icon: "!",
     badge: atRiskCount,
   },
-  { to: "/sessions", label: "الجلسات", icon: "▤" },
+  { to: "/sessions", label: "الجلسات التعليمية", icon: "▤" },
   { to: "/reports", label: "التقارير والتحليلات", icon: "≡" },
 ];
 
