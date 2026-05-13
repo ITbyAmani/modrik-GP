@@ -206,15 +206,13 @@ export function ReportsAnalyticsPage() {
     downloadCsv(`تقرير_جلسات_${period}.csv`, headers, lines);
   }, [period, sessionRows]);
 
-  const periodLabel = periods.find((p) => p.id === period)?.label ?? "";
-
   return (
     <div className="page-stack reports-page">
       <section
         className="student-filter student-filter--faculty"
         aria-label="تصفية التقارير والتصدير"
       >
-        <div className="student-filter__bar reports-page__filters-bar">
+        <div className="student-filter__bar">
           <div className="student-filter__segment student-filter__segment--course">
             <label className="student-filter__label" htmlFor="reports-period">
               الفترة الزمنية
@@ -266,7 +264,7 @@ export function ReportsAnalyticsPage() {
           <div className="student-filter__rule" aria-hidden />
           <div className="student-filter__segment student-filter__segment--search">
             <label className="student-filter__label" htmlFor="reports-search">
-              بحث في الطلاب المعروضين
+              بحث
             </label>
             <div className="student-filter__shell student-filter__shell--search">
               <span
@@ -279,7 +277,7 @@ export function ReportsAnalyticsPage() {
                 id="reports-search"
                 type="search"
                 className="student-filter__input"
-                placeholder="اسم، رقم جامعي، أو مقرر…"
+                placeholder="ابحث في الطلاب المعروضين…"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 autoComplete="off"
@@ -290,17 +288,6 @@ export function ReportsAnalyticsPage() {
       </section>
 
       <div className="reports-page__filters-extra">
-        <p className="panel__hint reports-page__filter-hint">
-          الفترة: <strong>{periodLabel}</strong>
-          {course !== "all" ? (
-            <>
-              {" "}
-              — المقرر: <strong>{course}</strong>
-            </>
-          ) : null}{" "}
-          — الطلاب والجلسات أدناه يتبعان نفس الفلاتر (حسب تاريخ آخر جلسة /
-          تاريخ الجلسة ضمن النافذة).
-        </p>
         <div className="reports-page__filters-actions">
           <div className="report-actions">
             <button type="button" className="btn-primary" onClick={exportStudentsCsv}>

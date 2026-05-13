@@ -92,7 +92,7 @@ export function StudentProfileContent({ student, embedded }: Props) {
           <section className="panel">
             <h2 className="panel__title">الدرجات الأكاديمية</h2>
             <div className="table-wrap">
-              <table className="data-table">
+              <table className="data-table data-table--students">
                 <thead>
                   <tr>
                     <th>المقرر</th>

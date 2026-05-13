@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { StudentProfileContent } from "../../components/student/StudentProfileContent";
 import { getStudentById } from "../../data/seasMock";
 
@@ -10,13 +10,7 @@ export function StudentProfilePage() {
   if (!student) return <Navigate to="/students" replace />;
 
   return (
-    <div className="page-stack">
-      <nav className="breadcrumb">
-        <Link to="/students">الطلاب</Link>
-        <span aria-hidden> / </span>
-        <span>ملف الطالب</span>
-      </nav>
-
+    <div className="page-stack student-profile-page">
       <StudentProfileContent student={student} />
     </div>
   );
